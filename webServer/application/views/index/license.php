@@ -1,0 +1,1 @@
+<?=$this->license_html?>

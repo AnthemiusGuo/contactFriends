@@ -1,0 +1,605 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"col",
+				"colspan	Attr"
+			],
+			[
+				"npo",
+				"npone"
+			],
+			[
+				"inser",
+				"insert_db"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"xls",
+				"xlsx"
+			],
+			[
+				"target",
+				"target='_blank"
+			],
+			[
+				"pre",
+				"prefix"
+			],
+			[
+				"now",
+				"now_typ"
+			],
+			[
+				"las",
+				"last_query"
+			],
+			[
+				"Comm",
+				"Comment_model"
+			],
+			[
+				"relate",
+				"relateId"
+			],
+			[
+				"var",
+				"var_dump($this"
+			],
+			[
+				"do",
+				"donation"
+			],
+			[
+				"dta",
+				"dataInfo"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"WHERE_T",
+				"WHERE_TYPE_IN"
+			],
+			[
+				"fied",
+				"field_list"
+			],
+			[
+				"new",
+				"newId"
+			],
+			[
+				"load",
+				"load_data_with_where"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"data",
+				"dataInfo"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"recor",
+				"record_list"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
+				"cr",
+				"crmIds"
+			],
+			[
+				"project",
+				"projectId"
+			],
+			[
+				"now_",
+				"now_page"
+			],
+			[
+				"rec",
+				"record_list"
+			],
+			[
+				"field",
+				"field_list"
+			],
+			[
+				"WHER",
+				"WHERE_TYPE_IN"
+			],
+			[
+				"org",
+				"orgId"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 287.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/controllers",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/models",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/models/records",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/views",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot/misc",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot/misc/css",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot/misc/js"
+	],
+	"file_history":
+	[
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/controllers/schedule.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/wwwroot/misc.npone/js/main.js",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/apply_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/controllers/admin.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/models/records/contact_model.php",
+		"/Users/GuoJia/Downloads/lkJSON-1.07/sample2.dpr",
+		"/Users/GuoJia/Downloads/lkJSON-1.07/uLkJSON.pas",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/wwwroot/misc.npone/css/main.css",
+		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/views/crm/createContacter.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/common/footer.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/DBDump/newsql.sql",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/task_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/admin.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/hr.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/index.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/management.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/user_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/hr/new_peaple.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/hr/peaple_info.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/peaple_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/peaple_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/task_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-conference.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/project.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/project_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/project_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/mini_info.npone.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/mini_info.sage.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/donor_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/mini_info.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/config/config.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/common/header.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/menus.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-finance.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-risks.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-plans.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-members.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/core/MY_Controller.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_relate_multicrm.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/bedonored_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/common/comments_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/comments.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/new_budget.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/management/applies.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/userInfo.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/comment_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/ut.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/document.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/perInfo.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/record_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_relate_simple_id.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/wwwroot/misc/css/main.css",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_related_multi_ids.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_related_id.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/system/libraries/Upload.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/new_crm.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_lightbox_edit.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_lightbox_info.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_lightbox_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_lightbox_new.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_lightbox_perInfo.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/new_reimbursement.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_enum.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_tag.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/new_project.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/libraries/Excel.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/management/import.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/crm_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/management/importData.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/wwwroot/misc/js/main.js",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_date.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_ts.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/fields.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/login.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/contactor_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/reg.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_peaple_typ_in_all.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/new_org_admin.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/orgs.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/title_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/reimbursement_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/comment_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/common/list_view.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/list_model.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/schedule/new_schedule.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/main.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/schedule/list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/list_view.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-task.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-schedule.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-expenditure.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-donation.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-document.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-budget.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/orgs.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/dashboard.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/viewall_reimbursement.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/new_cashflow.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/import_cashflow.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/check_reimbursement.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/cashflow.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/approve_reimbursement.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/analytics.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/main.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-relateProject.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-relateDonation.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-relateDocument.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-directDonor.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-directBeDonored.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-contacter.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-contact.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-building.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/new_role.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/new_admin.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/admins.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/role.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/donation.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_access.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/schedule.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/hisProject.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_search_box.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/management/new_role.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/task.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/schedule/calender.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/org_list.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/org.php",
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/setting.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 99.0,
+		"where_history":
+		[
+			"/wwwroot/NPO_IN_ONE/npoinone/www/",
+			"/wwwroot/NPO_IN_ONE/npoinone/www/application",
+			"/wwwroot/NPO_IN_ONE/npoinone/www/application/views",
+			"/wwwroot/NPO_IN_ONE/npoinone/www/application/",
+			"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/",
+			"/wwwroot/NPO_IN_ONE/npoinone/www/applocation/views/",
+			"/wwwroot/NPO_IN_ONE/npoinone/www/applocation/views",
+			"/wwwroot/NPO_IN_ONE/npoinone/www",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"useHash",
+			"ParseText",
+			"getString",
+			"reqOp",
+			"onDoDeleteSubTable",
+			"reqEdit",
+			"no-data-large",
+			"editor-related-id",
+			"onCreateSubTable",
+			"lightbo",
+			"lightbox_l",
+			"np",
+			"');\n",
+			");\n",
+			"major",
+			"$this->config->item",
+			"n'po'ne",
+			"get_Instance",
+			"getInstance",
+			"charset",
+			"base_url",
+			"static_url",
+			"loadOrgList",
+			"userInfo",
+			"default_lightbox_info",
+			"自动创建",
+			"desc",
+			"creator_desc",
+			"plusCreateData",
+			"setPlusCreateData",
+			"modal-header",
+			"logo-small modal-title",
+			"modal-header",
+			"typ_in_all_changed",
+			"checkWhere",
+			"$query->",
+			"$query->result",
+			"importData",
+			"newId\nimportData",
+			"20",
+			"\n            ",
+			"Volunteer",
+			"orgRequirement",
+			"upload_info",
+			"min-width",
+			"试听分享添加.*到精选集下载发送到我的设备",
+			"PHPExcel_Shared_Date",
+			"\n        ",
+			"orgId",
+			"create",
+			"req_url_template",
+			"lightbox",
+			"fileToUpload",
+			"BASEPATH",
+			"holder-editor-related-id",
+			"role",
+			"checkEmailExist",
+			"accessRule",
+			"limit_access_by_rule",
+			"gen_list_op",
+			"default_lightbox_info",
+			"<table class=\"table simplePagerContainer\">",
+			"table-striped",
+			"peapleId",
+			"template",
+			"load_data_with_where",
+			"sendMsg",
+			"sendMail",
+			"uid",
+			"canEdit",
+			"var_dump",
+			"attendTS",
+			"Field_tag",
+			"首要联系人",
+			"$query",
+			"sendMail",
+			"hide_relate_box",
+			"load_data_with_where",
+			"init_with_email",
+			"reqOp",
+			"sm-6",
+			"forEach",
+			"Management",
+			"pTaskPeapleRel",
+			"build_peaple_relation",
+			"<?",
+			"load_data_with_orgs_uid",
+			"searchInfo",
+			"typInAll",
+			"t'y'p",
+			"APPPATH.",
+			"app",
+			"app_root",
+			"info",
+			"lightbox",
+			"selectAll",
+			"setDefault",
+			"gen_search_editor",
+			"new_Schedule",
+			"new_Schedule.php",
+			"import_cashflow",
+			"project_info",
+			"build_cr",
+			"pProjectCrmRel",
+			"pTaskPeapleRel",
+			"join",
+			"onCreateSubTable",
+			"        \n",
+			"plusCreateData",
+			"setPlusCreateData",
+			"plusCreate",
+			"gen_search_result_id",
+			"gen_search_editor",
+			"gen_search_element",
+			"searchEle",
+			"var_dump",
+			"gen_editor",
+			"gen_search_editor",
+			"gensearch",
+			"month\ngen",
+			"datetimepicker",
+			"doTransEx",
+			"createDirect",
+			"gen\\_editor.*\\,",
+			"gen\\_editor\\(.*\\,\\)",
+			"gen_editor\\(.*\\,\\)",
+			"gen_editor\\(.*,\\)",
+			"gen_editor"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"modal-header logo-small",
+			"modal-title",
+			"BedonaredO",
+			"BedonaredP",
+			"",
+			"联系"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "contactFriends.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 548.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 248.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
