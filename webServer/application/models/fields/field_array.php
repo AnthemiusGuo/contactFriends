@@ -8,7 +8,7 @@ class Field_array extends Fields {
         $this->typ = "Field_array";
     }
     public function init($value){
-        parent::init((int)$value);
+        $this->value = $value;
     }
     public function build_validator(){
         $validater = ' digits ';

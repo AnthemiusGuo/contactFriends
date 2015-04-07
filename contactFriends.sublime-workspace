@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"json",
+				"jsonData"
+			],
+			[
+				"arr",
+				"array_remove"
+			],
+			[
+				"Field_array_",
+				"Field_array_comments"
+			],
+			[
+				"var",
+				"var_dump($info,$userInfo"
+			],
+			[
+				"this",
+				"this_uid"
+			],
+			[
+				"ini",
+				"init_with_id"
+			],
+			[
+				"var_",
+				"var_dump"
+			],
+			[
+				"is",
+				"is_login"
+			],
+			[
+				"edit",
+				"editUser"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"c",
+				"class	Attr"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"post",
+				"postTS"
+			],
+			[
+				"gen_show",
+				"gen_show_html"
+			],
+			[
+				"site",
+				"site_url('index"
+			],
+			[
+				"bo",
+				"border-radius"
+			],
+			[
 				"col",
 				"colspan	Attr"
 			],
@@ -14,14 +78,6 @@
 			[
 				"inser",
 				"insert_db"
-			],
-			[
-				"json",
-				"json_encode"
-			],
-			[
-				"bo",
-				"bottom"
 			],
 			[
 				"wid",
@@ -54,10 +110,6 @@
 			[
 				"relate",
 				"relateId"
-			],
-			[
-				"var",
-				"var_dump($this"
 			],
 			[
 				"do",
@@ -144,10 +196,6 @@
 				"function"
 			],
 			[
-				"arr",
-				"array"
-			],
-			[
 				"for",
 				"foreach	foreach …"
 			]
@@ -155,6 +203,136 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "webServer/application/views/blog/info.php",
+			"settings":
+			{
+				"buffer_size": 2767,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/wwwroot/misc/js/main.js",
+			"settings":
+			{
+				"buffer_size": 4330,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 605 files for \"ajax_post\"\n\n/wwwroot/contactFriends/webServer/application/views/index/bindThird.php:\n   92          return;\n   93      };\n   94:     ajax_post({m:'index',a:'doBindOld',data:{uPhone:$(\"#loginPhone\").val(),uPassword:$(\"#loginPassword\").val(),third_plat:$(\"#third_plat\").val(),third_id:$(\"#third_id\").val()},callback:function(json){\n   95              if (json.rstno>0){\n   96                  window.location.href=json.data.goto_url;\n   ..\n  121          return;\n  122      };\n  123:     ajax_post({m:'index',a:'doBindNew',data:{uPhone:$(\"#regPhone\").val(),uPassword:$(\"#regPassword\").val(),uName:$(\"#regName\").val(),third_plat:$(\"#third_plat\").val(),third_id:$(\"#third_id\").val()},callback:function(json){\n  124              if (json.rstno>0){\n  125                  window.location.href=json.data.goto_url;\n\n/wwwroot/contactFriends/webServer/application/views/index/changePwd.php:\n   37      var uPasswordNew = $(\"#uPasswordNew\").val();\n   38  \n   39:     ajax_post({m:'index',a:'doChangePwd',data:{uPassword:uPassword,uPasswordNew:uPasswordNew},callback:function(json){\n   40              if (json.rstno>0){\n   41                  alert(json.data.succMsg);\n\n/wwwroot/contactFriends/webServer/application/views/index/forgetMe.php:\n   57          return;\n   58      };\n   59:     ajax_post({m:'index',a:'doLogin',data:{uEmail:uEmail,uPassword:uPassword,uRememberMe:uRememberMe},callback:function(json){\n   60              if (json.rstno>0){\n   61                  window.location.href=json.data.goto_url; \n\n/wwwroot/contactFriends/webServer/application/views/index/login.php:\n   63          return;\n   64      };\n   65:     ajax_post({m:'index',a:'doLogin',data:{uPhone:uPhone,uPassword:uPassword,uRememberMe:uRememberMe},callback:function(json){\n   66              if (json.rstno>0){\n   67                  window.location.href=json.data.goto_url;\n\n/wwwroot/contactFriends/webServer/application/views/index/reg.php:\n   89      }\n   90  \n   91:     ajax_post({m:'index',a:'doReg',data:{uPhone:uPhone,uEmail:uEmail,uPassword:uPassword,uInvite:uInvite,uName:uName},callback:function(json){\n   92              if (json.rstno>0){\n   93                  window.location.href=json.data.goto_url;\n\n/wwwroot/contactFriends/webServer/application/views/index/regShop.php:\n   93      var uName = $(\"#uName\").val();\n   94  \n   95:     ajax_post({m:'index',a:'doReg',data:{uEmail:uEmail,uPassword:uPassword,uInvite:uInvite,uName:uName},callback:function(json){\n   96              if (json.rstno>0){\n   97                  window.location.href=json.data.goto_url; \n\n/wwwroot/contactFriends/webServer/wwwroot/misc/js/lib.js:\n  398      });\n  399  }\n  400: function ajax_post(opts){\n  401      var dft_opt = {\n  402          m: 'index',\n  ...\n  673          data['now_page'] = now_page;\n  674      }\n  675:     ajax_post({m:url_m,a:url_a,plus:id,data:data,callback:function(json){\n  676              if (json.rstno>0){\n  677                  lightbox_close();\n  ...\n  717      }\n  718  \n  719:     ajax_post({m:url_m,a:url_a,data:data,callback:function(json){\n  720              if (json.rstno>0){\n  721                  if (json.data.reload_comment){\n  ...\n  975  \n  976      $(\"#syncDataRst\").removeClass(\"has-error\").html(\"检查中...\");\n  977:     ajax_post({m:'project',a:'syncDescInvestigation',data:{crmIds:crmIds},callback:function(json){\n  978          if (json.rstno==1) {\n  979              _html = \"\";\n  ...\n  999      };\n 1000      $(\"#syncDataRst\").removeClass(\"has-error\").html(\"检查中...\");\n 1001:     ajax_post({m:'hr',a:'syncData',data:{email:email},callback:function(json){\n 1002          if (json.rstno==1) {\n 1003              $.each(json.data.userData,function(k,v){\n\n/wwwroot/contactFriends/webServer/wwwroot/misc/js/main.js:\n   85          return;\n   86      }\n   87:     ajax_post({m:editorController,a:editorMethod,data:{data:data_input},callback:function(json){\n   88          if (json.rstno==1) {\n   89              var _html = \"\";\n   ..\n  107      $(\"#blog-\"+id+\" good_count\").html(good_count);\n  108      var _template = '<li><a href=\"/{id}\">{name}</a></li>'\n  109:     ajax_post({m:'blog',a:'doZan',data:{data:data_input},callback:function(json){\n  110          if (json.rstno==1) {\n  111              var _html = \"\";\n\n14 matches across 8 files\n",
+			"settings":
+			{
+				"buffer_size": 4276,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "webServer/wwwroot/misc/js/lib.js",
+			"settings":
+			{
+				"buffer_size": 42945,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/models/records/org_model.php",
+			"settings":
+			{
+				"buffer_size": 8662,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/models/records/comment_model.php",
+			"settings":
+			{
+				"buffer_size": 10660,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/models/fields/field_array_hash.php",
+			"settings":
+			{
+				"buffer_size": 2005,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/models/fields/field_array_comments.php",
+			"settings":
+			{
+				"buffer_size": 3605,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/views/index/index.php",
+			"settings":
+			{
+				"buffer_size": 1646,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/views/editor/richtext.php",
+			"settings":
+			{
+				"buffer_size": 239,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/views/user/my_info.php",
+			"settings":
+			{
+				"buffer_size": 2989,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/libraries/Utility.php",
+			"settings":
+			{
+				"buffer_size": 57498,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webServer/application/controllers/index.php",
+			"settings":
+			{
+				"buffer_size": 14708,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webServer/system/libraries/Pagination.php",
+			"settings":
+			{
+				"buffer_size": 9053,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/models/list_model.php",
+			"settings":
+			{
+				"buffer_size": 9124,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webServer/application/models/records/blog_model.php",
+			"settings":
+			{
+				"buffer_size": 2535,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -197,19 +375,59 @@
 	},
 	"expanded_folders":
 	[
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/controllers",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/models",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/models/records",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/views",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot/misc",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot/misc/css",
-		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/wwwroot/misc/js"
+		"/wwwroot/contactFriends/webServer",
+		"/wwwroot/contactFriends/webServer/application",
+		"/wwwroot/contactFriends/webServer/application/controllers",
+		"/wwwroot/contactFriends/webServer/application/core",
+		"/wwwroot/contactFriends/webServer/application/libraries",
+		"/wwwroot/contactFriends/webServer/application/models",
+		"/wwwroot/contactFriends/webServer/application/models/fields",
+		"/wwwroot/contactFriends/webServer/application/models/records",
+		"/wwwroot/contactFriends/webServer/application/views",
+		"/wwwroot/contactFriends/webServer/application/views/blog",
+		"/wwwroot/contactFriends/webServer/application/views/common",
+		"/wwwroot/contactFriends/webServer/application/views/editor",
+		"/wwwroot/contactFriends/webServer/application/views/index",
+		"/wwwroot/contactFriends/webServer/application/views/user",
+		"/wwwroot/contactFriends/webServer/system/libraries",
+		"/wwwroot/contactFriends/webServer/wwwroot",
+		"/wwwroot/contactFriends/webServer/wwwroot/misc",
+		"/wwwroot/contactFriends/webServer/wwwroot/misc/css",
+		"/wwwroot/contactFriends/webServer/wwwroot/misc/js"
 	],
 	"file_history":
 	[
+		"/wwwroot/contactFriends/webServer/application/views/common/create.php",
+		"/wwwroot/contactFriends/webServer/application/controllers/blog.php",
+		"/wwwroot/contactFriends/webServer/application/models/fields/field_array.php",
+		"/wwwroot/contactFriends/webServer/application/models/fields/field_array_items.php",
+		"/wwwroot/contactFriends/webServer/application/models/fields/field_array_comments.php",
+		"/wwwroot/contactFriends/webServer/application/models/lists/blog_list.php",
+		"/wwwroot/contactFriends/webServer/wwwroot/misc/js/main.js",
+		"/wwwroot/contactFriends/webServer/application/controllers/contact.php",
+		"/wwwroot/contactFriends/webServer/application/views/user/info.php",
+		"/wwwroot/contactFriends/webServer/application/views/index/index.php",
+		"/wwwroot/contactFriends/webServer/application/models/records/user_model.php",
+		"/wwwroot/contactFriends/webServer/application/views/common/list_view.php",
+		"/wwwroot/contactFriends/webServer/application/models/record_model.php",
+		"/wwwroot/contactFriends/webServer/application/views/blog/write.php",
+		"/wwwroot/contactFriends/webServer/application/views/default_page.php",
+		"/wwwroot/contactFriends/webServer/wwwroot/misc/css/main.css",
+		"/wwwroot/contactFriends/webServer/application/views/common/header.php",
+		"/wwwroot/contactFriends/webServer/application/models/lists/user_list.php",
+		"/wwwroot/contactFriends/webServer/application/views/common/bread_and_search.php",
+		"/wwwroot/contactFriends/webServer/application/models/fields/field_rich_text.php",
+		"/wwwroot/contactFriends/webServer/application/views/editor/richtext.php",
+		"/wwwroot/contactFriends/webServer/application/models/records/blog_model.php",
+		"/wwwroot/contactFriends/webServer/wwwroot/misc/js/bootstrap-wysiwyg.js",
+		"/wwwroot/contactFriends/webServer/application/config/config.php",
+		"/wwwroot/contactFriends/webServer/application/controllers/index.php",
+		"/wwwroot/contactFriends/webServer/system/helpers/html_helper.php",
+		"/wwwroot/contactFriends/webServer/application/views/index/login.php",
+		"/wwwroot/contactFriends/webServer/application/views/index/reg.php",
+		"/wwwroot/contactFriends/webServer/application/core/MY_Controller.php",
+		"/wwwroot/contactFriends/webServer/application/views/common/footer.php",
+		"/wwwroot/contactFriends/webServer/application/config/cimongo.php",
 		"/wwwroot/NPO_IN_ONE/npoinone/branches/sage/application/controllers/schedule.php",
 		"/wwwroot/NPO_IN_ONE/npoinone/www/wwwroot/misc.npone/js/main.js",
 		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/records/apply_model.php",
@@ -306,38 +524,7 @@
 		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-document.php",
 		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/project/info-project-budget.php",
 		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/orgs.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/dashboard.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/viewall_reimbursement.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/new_cashflow.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/import_cashflow.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/check_reimbursement.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/cashflow.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/approve_reimbursement.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/analytics.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/main.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-relateProject.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-relateDonation.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-relateDocument.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-directDonor.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-directBeDonored.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-contacter.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-contact.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/crm/info-crm-building.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/new_role.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/new_admin.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/admins.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/admin/role.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/donation.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/classes/fields/field_access.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/schedule.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/hisProject.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/default_search_box.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/management/new_role.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/task.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/schedule/calender.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/models/lists/org_list.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/controllers/org.php",
-		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/finance/setting.php"
+		"/wwwroot/NPO_IN_ONE/npoinone/www/application/views/index/dashboard.php"
 	],
 	"find":
 	{
@@ -348,6 +535,7 @@
 		"height": 99.0,
 		"where_history":
 		[
+			"<project>",
 			"/wwwroot/NPO_IN_ONE/npoinone/www/",
 			"/wwwroot/NPO_IN_ONE/npoinone/www/application",
 			"/wwwroot/NPO_IN_ONE/npoinone/www/application/views",
@@ -364,6 +552,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ajax_post",
+			"$this->uti",
+			"$this->u",
+			"$this->util",
+			"reqOp",
+			"btn-default",
+			"<i class=\"icon-([a-zA-Z0-9-]*)\"></i>",
+			"\\S*script.*src=\\\".*static_url\\((.*)\\);.*$",
+			"\\<script.*src=\\\".*static_url\\((.*)\\);.*$",
+			"script",
+			"link_tag",
 			"useHash",
 			"ParseText",
 			"getString",
@@ -480,17 +679,6 @@
 			"gen_search_element",
 			"searchEle",
 			"var_dump",
-			"gen_editor",
-			"gen_search_editor",
-			"gensearch",
-			"month\ngen",
-			"datetimepicker",
-			"doTransEx",
-			"createDirect",
-			"gen\\_editor.*\\,",
-			"gen\\_editor\\(.*\\,\\)",
-			"gen_editor\\(.*\\,\\)",
-			"gen_editor\\(.*,\\)",
 			"gen_editor"
 		],
 		"highlight": true,
@@ -499,6 +687,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"btn-sm",
+			"<span class=\"glyphicon glyphicon-\\1\"></span>",
+			"<?php echo link_script(static_url(\\1)); ?>",
 			"modal-header logo-small",
 			"modal-title",
 			"BedonaredO",
@@ -515,8 +706,555 @@
 	"groups":
 	[
 		{
+			"selected": 10,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "webServer/application/views/blog/info.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2536,
+								2542
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 693.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "webServer/wwwroot/misc/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4330,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3991,
+								3998
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1840.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4276,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										158,
+										167
+									],
+									[
+										511,
+										520
+									],
+									[
+										981,
+										990
+									],
+									[
+										1304,
+										1313
+									],
+									[
+										1648,
+										1657
+									],
+									[
+										1973,
+										1982
+									],
+									[
+										2347,
+										2356
+									],
+									[
+										2674,
+										2683
+									],
+									[
+										2819,
+										2828
+									],
+									[
+										3006,
+										3015
+									],
+									[
+										3255,
+										3264
+									],
+									[
+										3518,
+										3527
+									],
+									[
+										3796,
+										3805
+									],
+									[
+										4100,
+										4109
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								2678,
+								2678
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 997.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "webServer/wwwroot/misc/js/lib.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 42945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15408,
+								15411
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7405.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "webServer/application/models/records/org_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8662,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8256,
+								8256
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3532.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "webServer/application/models/records/comment_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10660,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								463,
+								837
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "webServer/application/models/fields/field_array_hash.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2005,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								458,
+								458
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "webServer/application/models/fields/field_array_comments.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3605,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								882,
+								882
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 59.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "webServer/application/views/index/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1646,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1532,
+								1532
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "webServer/application/views/editor/richtext.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								228,
+								228
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "webServer/application/views/user/my_info.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2989,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								554,
+								554
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "webServer/application/libraries/Utility.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 57498,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2181,
+								2193
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1277.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "webServer/application/controllers/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14708,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1322,
+								1322
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 572.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "webServer/system/libraries/Pagination.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9053,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1838,
+								1851
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 637.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "webServer/application/models/list_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9124,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								569,
+								551
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "webServer/application/models/records/blog_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2535,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1235,
+								1235
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 93.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -559,7 +1297,7 @@
 	"project": "contactFriends.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":

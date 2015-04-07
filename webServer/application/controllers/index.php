@@ -7,6 +7,8 @@ class Index extends P_Controller {
 	}
 
 	function index() {
+		$this->load->library('pagination');
+
 		$this->login_verify();
 		$this->load_menus();
 
@@ -25,9 +27,25 @@ class Index extends P_Controller {
         $this->load->model('lists/Blog_list',"listInfo");
 
         $this->listInfo->setOrgId($this->myOrgId);
-        $this->listInfo->load_data_with_search($this->searchInfo);
+        $this->listInfo->load_data();
 
+        $config['base_url'] = site_url('index/index');
+	    $config['total_rows'] = $this->listInfo->recordCount;
+	    $config['per_page'] = 5;
+	    $config['uri_segment'] = 3;  // 表示第 3 段 URL 为当前页数，如 index.php/控制器/方法/页数，如果表示当前页的 URL 段不是第 3 段，请修改成需要的数值。
 
+	    $config['full_tag_open'] = '<ul class="pagination">';
+	    $config['full_tag_close'] = '</ul>';
+	    $config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+	 
+	    $this->pagination->initialize($config);
 
         $this->info_link = $this->controller_name . "/info/";
         $this->create_link =  $this->controller_name . "/create/";

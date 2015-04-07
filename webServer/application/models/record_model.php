@@ -152,11 +152,11 @@
 
     }
     public function gen_op_edit(){
-        return '<a class="list_op tooltips" onclick="lightbox({size:\'m\',url:\''.site_url($this->edit_link).'/'.$this->id.'\'})" title="编辑"><span class="glyphicon glyphicon-edit"></span></a>';
+        return '<a class="btn btn-xs list_op tooltips" onclick="lightbox({size:\'m\',url:\''.site_url($this->edit_link).'/'.$this->id.'\'})" title="编辑"><span class="glyphicon glyphicon-edit"></span></a>';
 
     }
     public function gen_op_delete(){
-        return '<a class="list_op tooltips" onclick=\'reqDelete("'.$this->deleteCtrl.'","'.$this->deleteMethod.'","'.$this->id.'")\' title="删除"><span class="glyphicon glyphicon-trash"></span></a>';
+        return '<a class="btn btn-xs list_op tooltips" onclick=\'reqDelete("'.$this->deleteCtrl.'","'.$this->deleteMethod.'","'.$this->id.'")\' title="删除"><span class="glyphicon glyphicon-trash"></span></a>';
 
     }
 
@@ -179,7 +179,7 @@
             $func = "gen_op_".$op;
             $strs[] = $this->$func();
         }
-        return implode(" | ", $strs);
+        return implode(" ", $strs);
     }
 
     public function insert_db($data){

@@ -1,38 +1,27 @@
 <?php
 include_once(APPPATH."models/record_model.php");
-class User_model extends Record_model {
+class Comment_model extends Record_model {
     public function __construct() {
-        parent::__construct('uUser');
+        parent::__construct('uComment');
         $this->uname = '';
         $this->uid = 0;
 
-        $this->deleteCtrl = 'contact';
-        $this->deleteMethod = 'doDelUser';
+        $this->deleteCtrl = 'blog';
+        $this->deleteMethod = 'doDelComments';
         $this->edit_link = 'contact/editUser/';
         $this->info_link = 'contact/info/';
         $this->default_is_lightbox_or_page = false;
 
         $this->field_list['_id'] = $this->load->field('Field_mongoid',"uid","_id");
-        $this->field_list['uid'] = $this->load->field('Field_string',"uid","uid");
+        $this->field_list['postUid'] = $this->load->field('Field_userid',"uid","uid");
 
-        $this->field_list['email'] = $this->load->field('Field_email',"电子邮箱","email");
-        $this->field_list['phone'] = $this->load->field('Field_string',"电话","phone");
-        $this->field_list['qq'] = $this->load->field('Field_string',"QQ","qq");
-        $this->field_list['weixin'] = $this->load->field('Field_string',"微信","weixin");
 
-        $this->field_list['regTS'] = $this->load->field('Field_date',"注册时间","regTS");
-        $this->field_list['typ'] = $this->load->field('Field_enum',"已注册","typ");
-        $this->field_list['typ']->setEnum(array("未注册","已注册"));
+        $this->field_list['postTS'] = $this->load->field('Field_ts',"注册时间","regTS");
 
-        $this->field_list['isAdmin'] = $this->load->field('Field_bool',"超级管理员","isAdmin");
-        $this->field_list['pwd'] = $this->load->field('Field_pwd',"密码","pwd");
-        $this->field_list['orgId'] = $this->load->field('Field_relate_org',"商户","orgId");
+        $this->field_list['toUid'] = $this->load->field('Field_userid',"回复","toUid");
 
-        $this->field_list['name'] = $this->load->field('Field_title',"姓名","name");
-        $this->field_list['inviteCode'] = $this->load->field('Field_string',"邀请码","inviteCode");
-        $this->field_list['intro'] = $this->load->field('Field_text',"个人介绍","intro");
+        $this->field_list['content'] = $this->load->field('Field_text',"内容","content");
 
-        $this->field_list['everEdit'] = $this->load->field('Field_int',"曾修改","everEdit");
 
     }
 

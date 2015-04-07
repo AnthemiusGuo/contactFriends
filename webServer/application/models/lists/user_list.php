@@ -10,7 +10,7 @@ class User_list extends List_model {
     }
 
     public function build_list_titles(){
-        return array('name','phone','email');
+        return array('name','phone','email','typ');
     }
 
     public function build_search_infos(){

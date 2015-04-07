@@ -26,7 +26,7 @@ class Blog extends P_Controller {
 
 		$this->editor_typ = 0;
         $this->title_create = "新建商户";
-		$this->template->load('default_page', 'common/create');
+		$this->template->load('default_page', 'blog/write');
 	}
 	function doCreateBlog(){
 		$modelName = 'records/Blog_model';
@@ -46,6 +46,11 @@ class Blog extends P_Controller {
         $data['postTS'] = $zeit;
         $data['editTS'] = $zeit;
         $data['postUser'] = $this->userInfo->uid;
+
+        $data['comments'] = array();
+        $data['commentCount'] = 0;
+        $data['goods'] = array();
+        $data['goodCount'] = 0;
 
         $data['createUid'] = $this->userInfo->uid;
         $data['createTS'] = $zeit;
@@ -68,23 +73,72 @@ class Blog extends P_Controller {
         echo $this->exportData($jsonData,$jsonRst);
     }
 
-    function info($id){
-    	if ($id==0){
+    function info($id=''){
+    	if ($id==''){
             return;
         }
         $this->login_verify();
         $this->load_menus();
-
+var_dump($id);
         $this->id = $id;
+var_dump($id);
+        $this->load->model('records/Blog_model',"dataInfo");
+        var_dump($id);
+        $this->dataInfo->init_with_id($id);
+var_dump($id);
+        $this->load->model('records/User_model',"zanUser");
+        $this->zanList = array();
 
+        foreach ($this->dataInfo->field_list['goods']->value as $this_uid) {
+            $this->zanUser->init_with_id($this_uid);
+            $this->zanList[] = array('id'=>$this->zanUser->field_list['_id']->toString(),
+                                     'name'=>$this->zanUser->field_list['name']->value);
+        }
+
+        $this->template->load('default_page', 'blog/info');
+    }
+
+    function doZan($id){
+        $this->login_verify(true);
+        $this->load->model('records/Blog_model',"dataInfo");
+        $this->dataInfo->init_with_id($id);
+        $data = array();
+        if (in_array($this->uid,$this->dataInfo->field_list['goods']->value)){
+            $this->load->library("utility");
+            $data['goods'] = $this->utility->array_remove($this->uid,$this->dataInfo->field_list['goods']->value);
+            $data['goodCount'] = count($data['goods']);
+        } else {
+            $data['goods'][] = $this->uid;
+            $data['goodCount'] = count($data['goods']);
+        }
+        $this->dataInfo->update_db($data,$id);
+
+        $this->zanList = array();
+
+        foreach ($this->dataInfo->field_list['goods']->value as $this_uid) {
+            $this->zanUser->init_with_id($this_uid);
+            $this->zanList[] = array('id'=>$this->zanUser->field_list['_id']->toString(),
+                                     'name'=>$this->zanUser->field_list['name']->value);
+        }
+        $this->zanList[] = array('id'=>$this->uid,'name'=>$this->userInfo->field_list['name']->value);
+        $jsonData['dataCount'] = $data['goodCount'];
+        $jsonData['data'] = $this->zanList;
+
+        echo $this->exportData($jsonData,1);
+    }
+
+    function doComment($id){
+        $this->login_verify(true);
         $this->load->model('records/Blog_model',"dataInfo");
         $this->dataInfo->init_with_id($id);
 
+        $comment = $this->input->post('comment');
 
-        $this->detailShowFields = $this->dataInfo->buildDetailShowFields();
+        $this->dataInfo->field_list['comments']->addNewLine($comment);
+        
+        $jsonData['dataCount'] = $data['goodCount'];
+        $jsonData['data'] = $this->zanList;
 
-        $this->infoTitle = $this->dataInfo->buildInfoTitle();
-
-        $this->template->load('default_page', 'blog/info');
+        echo $this->exportData($jsonData,1);
     }
 }

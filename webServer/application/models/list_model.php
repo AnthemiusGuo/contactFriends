@@ -19,6 +19,7 @@ class List_model extends CI_Model {
         $this->whereOrgId = null;
         $this->quickSearchWhere = array("name");
         $this->is_lightbox = true;
+        $this->recordCount = 0;
     }
 
     public function setOrgId($orgId) {
@@ -259,6 +260,7 @@ class List_model extends CI_Model {
                 $this->record_list[$id]->orgId = $this->whereOrgId;
                 $this->record_list[$id]->init_with_data($row['_id'],$row);
             }
+            $this->recordCount = $num;
             return $num;
         } else {
             return 0;

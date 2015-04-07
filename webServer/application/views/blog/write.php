@@ -1,3 +1,8 @@
+<ul class='breadcrumb'>
+    <li><a href='<?=site_url()?>'><span class='glyphicon glyphicon-home'></span> 首页</a></li>
+    <li><a href='<?=site_url()?>'><span class='glyphicon glyphicon-list'></span> 文章</a></li>
+    <li class='active'><span class='glyphicon glyphicon-circle-arrow-right'></span> 发文章</a></li>
+</ul>
 <div class="row">
     <div class="col-lg-12">
         <form role="form" id="createForm">
@@ -41,4 +46,27 @@
         </form>
     </div>
     <div class="clearfix"></div>
+    <div class="col-lg-12">
+        <?
+        if ($this->editor_typ==0):
+        ?>
+        <button type="button" class="btn btn-primary pull-right" onclick="reqCreate('<?=$this->createUrlC?>','<?=$this->createUrlF?>',reqCreateFields,createFormValidator)">保存</button>
+        <script>
+        var createFormValidator = $("#createForm").validate();
+        var reqCreateFields = [];
+        <?php
+        foreach ($this->createPostFields as $key => $value) {
+            echo 'reqCreateFields.push({name:"'.$value.'",type:"'.$this->dataInfo->field_list[$value]->typ.'"});';
+        }
+        ?>
+        </script>
+        <?
+        else:
+        ?>
+
+        <?
+        endif;
+        ?>
+        <div class="clearfix"></div>
+    </div>
 </div>

@@ -95,6 +95,13 @@ class Utility {
 		}
     }
 
+    function array_remove($item,$arr){
+    	while ($key = array_search($item, $arr)){
+    		array_splice($arr, $key, 1);
+    	}
+		return $arr;
+    }
+
 
 	// 访问webservice接口
 	function webservice($url, $params, $function) {

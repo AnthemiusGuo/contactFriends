@@ -3,7 +3,7 @@ include_once(APPPATH."models/list_model.php");
 include_once(APPPATH."models/records/blog_model.php");
 class Blog_list extends List_model {
     public function __construct() {
-        parent::__construct('bBook');
+        parent::__construct('bBlog');
         parent::init("Blog_list","Blog_model");
     }
 

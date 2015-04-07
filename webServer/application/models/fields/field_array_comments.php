@@ -1,12 +1,12 @@
 <?php
 include_once(APPPATH."models/fields/field_array_hash.php");
-include_once(APPPATH."models/records/items_model.php");
-class Field_array_items extends Field_array_hash {
+include_once(APPPATH."models/records/comment_model.php");
+class Field_array_comments extends Field_array_hash {
 
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_array_hash";
-        $this->field_typ = "items_model";
+        $this->field_typ = "comment_model";
 
         $this->dataModel = new $this->field_typ();
         
@@ -21,6 +21,7 @@ class Field_array_items extends Field_array_hash {
             $this->datas[] = $dataModel;
         }
     }
+    public 
     public function gen_list_html($limit = 0){
         $_html = '';
         foreach ($this->datas as $item) {

@@ -16,6 +16,9 @@
 
 	<meta property="qc:admins" content="1524167566671621135056375" />
 	<?php echo link_script(static_url('js/jquery-1.11.1.min.js')); ?>
+	<?php echo link_script(static_url('js/bootstrap3-wysihtml5.all.js')); ?>
+	<?php echo link_script(static_url('js/bootstrap-wysihtml5.zh-CN.js')); ?>
+	
 	
 	<?php echo link_script(static_url('js/jquery-ui.min.js')); ?>
 	<?php echo link_script(static_url('js/bootstrap.min.js')); ?>

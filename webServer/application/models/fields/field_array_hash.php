@@ -8,11 +8,7 @@ class Field_array_hash extends Field_array {
         $this->field_typ = "Null_model";
         $this->hash_info = array('name'=>'名称','info'=>'信息');
         $this->value = array();
-    }
-    public function init($value){
-        var_dump($value);
-        exit;
-        parent::init((int)$value);
+        $this->datas = array();
     }
     public function gen_show_html(){
         $_html = '<table class="table table-bordered"><thead>

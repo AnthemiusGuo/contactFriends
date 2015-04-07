@@ -101,11 +101,39 @@ function searchbox_on_change(inputName,editorController,editorMethod){
     });
 }
 
-function phoneSearch(id){
-	var phone = $("#"+id).val().trim();
-	if (phone==""){
-		return;
-	}
-	var url = req_url_template.str_supplant({ctrller:'phone',action:'call'})+'/'+phone;
-	window.location.href=url;
+function zan_blog(id){
+	var good_count = parseInt($("#blog-"+id+" .good_count").html());
+    good_count = good_count+1;
+    $("#blog-"+id+" good_count").html(good_count);
+    var _template = '<li><a href="/{id}">{name}</a></li>'
+    ajax_get({m:'blog',a:'doZan',id:id,callback:function(json){
+        if (json.rstno==1) {
+            var _html = "";
+            $("#blog-"+id+" good_count").html(json.dataCount);
+            $.each(json.data,function(k,v){
+                _html += _template.str_supplant(v);
+            });
+            $("#blog-"+id+" .zanList").html(_html);
+        } else {
+            alert();
+        }
+    }});
+}
+
+function sendComments(id){
+    var comments_count = parseInt($("#blog-"+id+" .comment_count").html());
+    comments_count = comments_count+1;
+    $("#blog-"+id+" comment_count").html(comments_count);
+    var _template = '<li><a href="/{id}">{name}</a></li>'
+    ajax_post({m:'blog',a:'doComment',id:id,data:{comment:$("#commentInput").val()},callback:function(json){
+        if (json.rstno==1) {
+            var _html = "";
+            $.each(json.data,function(k,v){
+                _html += _template.str_supplant(v);
+            });
+            $("#blog-"+id+" .zanList").html(_html);
+        } else {
+            alert();
+        }
+    }});
 }

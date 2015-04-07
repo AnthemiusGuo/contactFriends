@@ -401,6 +401,7 @@ function ajax_post(opts){
     var dft_opt = {
         m: 'index',
         a: 'index',
+        id: '',
         plus: '',
         data: {},
         error_alert:1,
@@ -410,7 +411,13 @@ function ajax_post(opts){
     };
     opts = $.extend({},dft_opt,opts);
     $.blockUI();
-    var url = req_url_template.str_supplant({ctrller:opts.m,action:opts.a})+'/'+opts.plus;
+    var url = req_url_template.str_supplant({ctrller:opts.m,action:opts.a});
+    if (opts.id!='') {
+        url = url+'/'+opts.id;
+    }
+    if (opts.plus!='') {
+        url = url+'/'+opts.plus;
+    }
     $.ajax(
         {type: "POST",
         url: url,

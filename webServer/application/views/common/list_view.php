@@ -12,7 +12,6 @@ if ($this->need_plus!=""){
     ?>
     <div class="col-lg-12 list-title-op">
         <a href="javascript:void(0)" class="btn btn-primary btn-sm" onclick="lightbox({size:'m',url:'<?=site_url($this->create_link)?>'})"><span class="glyphicon glyphicon-file"></span> 新建</a>
-        <a href="javascript:void(0)" class="btn btn-default btn-sm" onclick="reqDelete('<?=$this->deleteCtrl?>','<?=$this->deleteMethod?>',0)"><span class="glyphicon glyphicon-trash"></span> 批量删除</a>
     </div>
     <?
     endif;
@@ -47,7 +46,6 @@ if ($this->need_plus!=""){
         <table class="table table-striped simplePagerContainer">
             <thead>
                 <tr>
-                    <th><input type="checkbox" value="" id="selectAll"> 全选</th>
                     <?
                     foreach ($this->listInfo->build_list_titles() as $key_names):
                     ?>
@@ -67,9 +65,6 @@ if ($this->need_plus!=""){
                 $i = 1;
                 foreach($this->listInfo->record_list as  $this_record): ?>
                     <tr>
-                        <td>
-                            <input type="checkbox" name="check_target[]" value="<?=$this_record->field_list['_id']->gen_list_html()?>">
-                        </td>
                         <?
                         foreach ($this->listInfo->build_list_titles() as $key_names):
                         ?>
@@ -95,12 +90,12 @@ if ($this->need_plus!=""){
                         <td>
                             <?
                             if ($this->listInfo->is_lightbox):
-                                echo '<a class="list_op tooltips" href="javascript:void(0)" onclick="lightbox({size:\'m\',url:\''. site_url($this_record->info_link.$this_record->id).'\'})"><span class="glyphicon glyphicon-search"></span></a>';
+                                echo '<a class="btn  btn-xs list_op tooltips" href="javascript:void(0)" onclick="lightbox({size:\'m\',url:\''. site_url($this_record->info_link.$this_record->id).'\'})"><span class="glyphicon glyphicon-search"></span></a>';
                             else :
-                                echo '<a  class="list_op tooltips" href="'.site_url($this->info_link.$this_record->id).'"><span class="glyphicon glyphicon-search"></span></a>';
+                                echo '<a  class="btn btn-xs list_op tooltips" href="'.site_url($this->info_link.$this_record->id).'"><span class="glyphicon glyphicon-search"></span></a>';
                             endif;
                             ?>
-                             | 
+                            
                             <?php
                             if ($this->canEdit) {
                                 echo $this_record->gen_list_op();
