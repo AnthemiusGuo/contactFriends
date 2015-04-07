@@ -21,7 +21,6 @@ class Field_array_comments extends Field_array_hash {
             $this->datas[] = $dataModel;
         }
     }
-    public 
     public function gen_list_html($limit = 0){
         $_html = '';
         foreach ($this->datas as $item) {

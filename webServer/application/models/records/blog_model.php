@@ -3,7 +3,7 @@ include_once(APPPATH."models/record_model.php");
 class Blog_model extends Record_model {
     public function __construct() {
         parent::__construct('bBlog');
-        $this->deleteCtrl = 'crm';
+        $this->deleteCtrl = 'blog';
         $this->deleteMethod = 'doSubDel/book';
         $this->edit_link = 'crm/subEdit/book/';
         $this->info_link = 'crm/subinfo/book/';
@@ -11,9 +11,6 @@ class Blog_model extends Record_model {
         $this->field_list['_id'] = $this->load->field('Field_mongoid',"id","_id");
         $this->field_list['title'] = $this->load->field('Field_string',"标题","title",true);
         $this->field_list['orgId'] = $this->load->field('Field_mongoid',"组织","orgId");
-
-        $this->field_list['status'] = $this->load->field('Field_enum',"发货状态","status");
-        $this->field_list['status']->setEnum(array('未确定','现货备货','订单生产','打包发货','已到货'));
 
         $this->field_list['content'] = $this->load->field('Field_rich_text',"文章","content",true);
         $this->field_list['goodCount'] = $this->load->field('Field_int',"赞","goodCount");

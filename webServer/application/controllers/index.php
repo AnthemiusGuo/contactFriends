@@ -7,27 +7,24 @@ class Index extends P_Controller {
 	}
 
 	function index() {
+
 		$this->load->library('pagination');
 
 		$this->login_verify();
+
 		$this->load_menus();
 
-		if ($this->userInfo->field_list['everEdit']->value==0) {
-			$this->needInputUserInfo = true;
-		} else {
-			$this->needInputUserInfo = false;
-		}
 		//TODO
 		$this->needInputUserInfo = false;
 
 		$this->quickSearchName = "名称/姓名/电话";
         $this->buildSearch($searchInfo);
 
-
         $this->load->model('lists/Blog_list',"listInfo");
-
-        $this->listInfo->setOrgId($this->myOrgId);
+        
+        // $this->listInfo->setOrgId($this->myOrgId);
         $this->listInfo->load_data();
+        
 
         $config['base_url'] = site_url('index/index');
 	    $config['total_rows'] = $this->listInfo->recordCount;
@@ -47,32 +44,13 @@ class Index extends P_Controller {
 	 
 	    $this->pagination->initialize($config);
 
-        $this->info_link = $this->controller_name . "/info/";
-        $this->create_link =  $this->controller_name . "/create/";
-        $this->deleteCtrl = 'crm';
-        $this->deleteMethod = 'doDeleteCrm';
-
+        
 
 		$this->template->load('default_page', 'index/index');
 
 
 	}
-	function doTest(){
-			$content = "亲爱的{username}，您好！<br/>
-<br/>
-您在{datetime}提交了账号密码找回请求，请点击下面的链接修改密码。<br/>";
-
-
-			$this->sendMail("1964398291@qq.com",$content,"感谢您注册npone.cn");
-	}
-	function doTest2(){
-		$headers = 'From: zhujun@the9.com' . "\r\n" .
-    'Reply-To: zhujun@the9.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-    	$ret = mail("1964398291@qq.com", "邮箱认证" ,  "sssssssss",$headers);
-    	var_dump($ret);
-    }
+	
 
 	function noAuth(){
 		$this->template->load('default_error', 'index/noAuth');
@@ -169,31 +147,6 @@ http://www.npone.cn<br/>
         echo $this->exportData($jsonData,$jsonRst);
 	}
 
-	function mailbox(){
-		$this->getPage();
-
-		$this->login_verify();
-		$this->infoTitle = "我的信箱";
-        $this->load->model('lists/mail_list',"listInfo");
-        $this->all_counts = $this->listInfo->get_all_count_with_uid($this->userInfo->uid);
-        $this->listInfo->load_data_with_uid($this->userInfo->uid,$this->pageNow,5);
-
-        $this->load->library('kuopage');
-
-        $config = array();
-		$config['base_url'] = site_url('index/mailbox/');
-		$config['total_rows'] = $this->all_counts;
-		$config['per_page'] = 5;
-		$config['now_page'] = $this->pageNow;
-		$config['last_link'] = false;
-		$config['query_string_segment'] = 'page';
-		$this->kuopage->initialize($config);
-
-		$this->pages = $this->kuopage->create_links();
-
-
-        $this->template->load('default_lightbox_list', 'index/mailbox');
-	}
 
 	function userInfo($uid)
 	{
