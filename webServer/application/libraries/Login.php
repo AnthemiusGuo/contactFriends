@@ -53,7 +53,12 @@ class Login {
 			}
 			if ($current_ts - $sessionUser['login_ts'] > 60) {
 				//60秒以上，刷新session
-				$this->up_onlince_info(new MongoId($this->cookie_onlineId),array('login_ts'=>$current_ts));
+				if (DB_TYPE=="MYSQL"){
+		            $tmpId = $this->cookie_onlineId;
+		        } else {
+		            $tmpId = new MongoId($this->cookie_onlineId);
+		        }
+				$this->up_onlince_info($tmpId,array('login_ts'=>$current_ts));
 			}
 
 
@@ -102,10 +107,15 @@ class Login {
 		if ($this->cookie_onlineId==""){
 			return false;
 		} else {
-			$id = new MongoId($this->cookie_onlineId);
-			$this->CI->cimongo->where(array('_id'=>$id));
+			if (DB_TYPE=="MYSQL"){
+				$id = $this->cookie_onlineId;
+	        } else {
+	        	$id = new MongoId($this->cookie_onlineId);
+	        }
+			
+			$this->CI->db->where(array('_id'=>$id));
 
-	        $query = $this->CI->cimongo->get('uOnlineInfo');
+	        $query = $this->CI->db->get('uOnlineInfo');
 
 	        if ($query->num_rows() > 0)
 	        {
@@ -119,20 +129,22 @@ class Login {
 
 	public function save_onlince_info($id,$info){
 		$info['_id'] = $id;
-		$this->CI->cimongo->insert('uOnlineInfo',$info);
+		$this->CI->db->insert('uOnlineInfo',$info);
 	}
 	public function remove_onlince_info(){
 		//TODO
 	}
 	public function up_onlince_info($id,$info){
-		$this->CI->cimongo->where(array('_id'=>$id));
-		$this->CI->cimongo->update('uOnlineInfo',$info);
+		$this->CI->db->where(array('_id'=>$id));
+		$this->CI->db->update('uOnlineInfo',$info);
 	}
 
 
 	public function process_login($loginname, $uid, $save_cookie = true,$auto_login = false) {
 		$zeit =  time();
-
+		if ($loginname==NULL){
+			$loginname = "";
+		}
 		$user = array(
 			'loginname' => $loginname,
 			'uid'      => $uid,
@@ -142,8 +154,15 @@ class Login {
 			'auth'=> substr(md5($uid.$zeit.'Sa34KJ9'), 10,8),
 			'rememberme'=>($save_cookie)?substr(md5($uid.$zeit.'qwerrrr'), 10,8):''
 		);
-		$id = new MongoId();
-		$user['onlineId'] = $id->{'$id'};
+		if (DB_TYPE=="MYSQL"){
+			$id = uniqid();
+        	$user['onlineId'] = $id;
+        } else {
+        	$id = new MongoId();
+        	$user['onlineId'] = $id->{'$id'};
+        }
+		
+		
 
 		$this->save_onlince_info($id,$user);
 

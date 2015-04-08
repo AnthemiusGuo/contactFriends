@@ -6,6 +6,7 @@ class Field_string extends fields {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_string";
+        $this->baseTyp = "Field_string";
         $this->value = '';
     }
     public function init($value){

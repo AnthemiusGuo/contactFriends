@@ -13,7 +13,6 @@ class User_model extends Record_model {
         $this->default_is_lightbox_or_page = false;
 
         $this->field_list['_id'] = $this->load->field('Field_mongoid',"uid","_id");
-        $this->field_list['uid'] = $this->load->field('Field_string',"uid","uid");
 
         $this->field_list['email'] = $this->load->field('Field_email',"电子邮箱","email");
         $this->field_list['phone'] = $this->load->field('Field_string',"电话","phone");
@@ -98,9 +97,9 @@ class User_model extends Record_model {
     }
 
     public function check_auth_code($auth_code){
-        $this->cimongo->where(array('client_auth_code'=>$auth_code));
+        $this->db->where(array('client_auth_code'=>$auth_code));
 
-        $query = $this->cimongo->get($this->tableName);
+        $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
             $result = $query->row_array();
@@ -136,10 +135,15 @@ class User_model extends Record_model {
 
     public function init_by_uid($uid){
         parent::init($uid);
-        $id = new MongoId($uid);
-        $this->cimongo->where(array('_id'=>$id));
+        if (DB_TYPE=="MYSQL"){
+            $id = $uid;
+        } else {
+            $id = new MongoId($uid);
+        }
+        
+        $this->db->where(array('_id'=>$id));
 
-        $query = $this->cimongo->get($this->tableName);
+        $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
             $result = $query->row_array();
@@ -154,9 +158,9 @@ class User_model extends Record_model {
 
     public function init_with_email($email){
         parent::init($id);
-        $this->cimongo->where(array('email'=>$email));
+        $this->db->where(array('email'=>$email));
 
-        $query = $this->cimongo->get($this->tableName);
+        $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
             $result = $query->row_array();
@@ -172,8 +176,12 @@ class User_model extends Record_model {
 
     public function init_with_data($id,$data){
         parent::init_with_data($id,$data);
-
-        $this->uid = $id->{'$id'};
+        if (DB_TYPE=="MYSQL"){
+            $this->uid = $id;
+        } else {
+            $this->uid = $id->{'$id'};
+        }
+        
         $this->uname = $data['name'];
     }
 
@@ -204,8 +212,8 @@ class User_model extends Record_model {
     }
 
     public function check_email_exist($email){
-        $this->cimongo->where(array('email'=>$email));
-        $query = $this->cimongo->get($this->tableName);
+        $this->db->where(array('email'=>$email));
+        $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
             return true;
@@ -215,8 +223,8 @@ class User_model extends Record_model {
     }
 
     public function check_phone_exist($phone){
-        $this->cimongo->where(array('phone'=>$phone));
-        $query = $this->cimongo->get($this->tableName);
+        $this->db->where(array('phone'=>$phone));
+        $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
             return true;
@@ -232,69 +240,37 @@ class User_model extends Record_model {
         if ($input['phone']!='' && $this->check_phone_exist($input['phone'])){
             return -2;
         }
-        // if ($input['email']=='' && $input['phone']=='') {
-        //     return -3;
-        // }
-
-        $zeit = time();
-
-        if ($input['inviteCode']!=''){
-            $temp = explode('-',$input['inviteCode']);
-            if (count($temp)!=2){
-                return -4;
-            }
-            if ($temp[0]=='A'){
-
-
-            } elseif ($temp[0]=='B'){
-
-
-            } elseif ($temp[0]=='C'){
-
-            } else {
-                return -5;
-            }
-        }
-
-        $data = array(
-           'email' => $input['email'] ,
-           'phone' => $input['phone'] ,
-           'pwd' => $input['pwd'] ,
-           'name' => $input['uName'],
-           'orgId' => '',
-           'superPwd' => 'null',
-           'isAdmin' =>0,
-           'sign'=>'新来的',
-           'intro'=>'',
-           'everEdit'=>0,
-        );
-
-        $modelName = 'records/User_model';
-        $jsonRst = 1;
-        $zeit = time();
-
-
-        $createPostFields = $this->buildChangeNeedFields();
+        $this->createPostFields = $this->buildChangeNeedFields();
         $data = array();
-        foreach ($createPostFields as $value) {
-            $data[$value] = $this->field_list[$value]->gen_value($input[$value]);
+        foreach ($this->createPostFields as $key) {
+            if (!isset($input[$key])){
+                $input[$key] = "";
+            }
+            $data[$key] = $this->field_list[$key]->gen_value($input[$key]);
         }
 
+        $data['orgId'] = 0;
+
+        $data['regTS'] = time();
+        $data['typ'] = 0;
+
+        $data['inviteCode'] = substr(md5($zeit.rand(0,100000)), 5,8);
+        
+        if (isset($input['third_plat'])) {
+            $data['third_typ_'.$input['third_plat']] = $input['third_id'];
+        }
 
         $checkRst = $this->check_data($data);
         if (!$checkRst){
-            return -10;
+            return -1;
         }
-        if (isset($input['third_plat'])) {
-    		$data['third_typ_'.$input['third_plat']] = $input['third_id'];
-        }
-        $data['regTS'] = time();
         $insert_ret = $this->insert_db($data);
 
-        if ($insert_ret===false) {
-            return -999;
+        if (DB_TYPE=="MYSQL"){
+            $uid = $insert_ret;
+        } else {
+            $uid = $insert_ret->{'$id'};
         }
-        $uid = $insert_ret->{'$id'};
 
         $data['uid'] = $uid;
         $data['_id'] = $insert_ret;
@@ -306,9 +282,9 @@ class User_model extends Record_model {
 
     public function verify_login($email,$pwd){
 
-        $this->cimongo->or_where(array('phone'=>$email,'email'=>$email));
+        $this->db->or_where(array('phone'=>$email,'email'=>$email));
 
-        $query = $this->cimongo->get($this->tableName);
+        $query = $this->db->get($this->tableName);
 
         if ($query->num_rows() > 0)
         {

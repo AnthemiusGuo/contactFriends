@@ -15,19 +15,13 @@ class Field_pwd extends Field_string {
         parent::init($value);
     }
     public function gen_list_html(){
-        $len = $this->list_short_len;
-        $str = $this->gen_show_html();
-        if (mb_strlen($str)>$len) {
-            return mb_substr($str, 0,$len-2)."...";
-        } else {
-            return $str;
-        }
+        return '******';
     }
     public function gen_value($input){
         return strtolower(md5($input));
     }
     public function gen_show_html(){
-        return '***';
+        return '******';
     }
     public function gen_search_element($default="="){
         $editor = "<select id=\"searchEle_{$this->name}\" name=\"searchEle_{$this->name}\" class=\"form-control input-sm\" value=\"{$default}\">";

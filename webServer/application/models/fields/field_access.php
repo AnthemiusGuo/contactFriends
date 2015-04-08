@@ -10,6 +10,7 @@ class Field_access extends field_string {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_access";
+        $this->baseTyp = "Field_string";
         $this->ruleList = array(
             "Finance"=>array("Reimbursement","ReimbursementEdit","ReimbursementApprove","ReimbursementAudit","BaseView","TurnoverEdit","TurnoverAudit"),
             "Hr"=>array("BaseView","Edit"),

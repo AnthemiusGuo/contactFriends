@@ -10,34 +10,11 @@ class Org_model extends Record_model {
         $this->info_link = 'admin/infoOrg/';
 
         $this->field_list['_id'] = $this->load->field('Field_mongoid',"id","_id");
-        $this->field_list['showid'] = $this->load->field('Field_showurl',"展示网址","showid");
         $this->field_list['name'] = $this->load->field('Field_title',"商户名称","name",true);
-        $this->field_list['provinceId'] = $this->load->field('Field_provinceid',"省份","provinceId");
-        $this->field_list['status'] = $this->load->field('Field_enum',"状态","status");
-        $this->field_list['status']->setEnum(array('正常','冻结'));
         $this->field_list['beginTS'] = $this->load->field('Field_date',"成立时间","beginTS");
-        $this->field_list['addresses'] = $this->load->field('Field_string',"商户地址","addresses");
-        $this->field_list['phone'] = $this->load->field('Field_string',"电话","phone");
-        $this->field_list['qq'] = $this->load->field('Field_string',"QQ","qq");
-        $this->field_list['weixin'] = $this->load->field('Field_string',"微信","weixin");
-        $this->field_list['wangwang'] = $this->load->field('Field_string',"旺旺","wangwang");
-
-        $this->field_list['isVip'] = $this->load->field('Field_bool',"VIP","isVip");
-        $this->field_list['vipOver'] = $this->load->field('Field_date',"VIP过期时间","vipOver");
-
-        $this->field_list['zipCode'] = $this->load->field('Field_string',"邮编","zipCode");
-        $this->field_list['enterCode'] = $this->load->field('Field_string',"加入密码","enterCode");
-        $this->field_list['desc'] = $this->load->field('Field_text',"商户介绍","desc");
-        $this->field_list['supperUid'] = $this->load->field('Field_userid',"店主","supperUid");
         $this->field_list['commonInviteCode'] = $this->load->field('Field_string',"通用邀请码","commonInviteCode");
         $this->field_list['supperInviteCode'] = $this->load->field('Field_string',"管理员邀请码","supperInviteCode");
 
-
-
-        $this->field_list['createUid'] = $this->load->field('Field_userid',"创建人","createUid");
-        $this->field_list['createTS'] = $this->load->field('Field_ts',"创建时间","createTS");
-        $this->field_list['lastModifyUid'] = $this->load->field('Field_userid',"最终编辑人","lastModifyUid");
-        $this->field_list['lastModifyTS'] = $this->load->field('Field_ts',"最终编辑时间","lastModifyTS");
     }
 
     public function gen_list_html($templates){

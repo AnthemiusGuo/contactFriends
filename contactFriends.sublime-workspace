@@ -265,7 +265,7 @@
 			"file": "webServer/application/models/fields/field_array_comments.php",
 			"settings":
 			{
-				"buffer_size": 3605,
+				"buffer_size": 3593,
 				"line_ending": "Unix"
 			}
 		},
@@ -305,8 +305,16 @@
 			"file": "webServer/application/controllers/index.php",
 			"settings":
 			{
-				"buffer_size": 14708,
+				"buffer_size": 13149,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webServer/application/models/lists/blog_list.php",
+			"settings":
+			{
+				"buffer_size": 782,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -329,7 +337,7 @@
 			"file": "webServer/application/models/records/blog_model.php",
 			"settings":
 			{
-				"buffer_size": 2535,
+				"buffer_size": 2360,
 				"line_ending": "Unix"
 			}
 		}
@@ -382,6 +390,7 @@
 		"/wwwroot/contactFriends/webServer/application/libraries",
 		"/wwwroot/contactFriends/webServer/application/models",
 		"/wwwroot/contactFriends/webServer/application/models/fields",
+		"/wwwroot/contactFriends/webServer/application/models/lists",
 		"/wwwroot/contactFriends/webServer/application/models/records",
 		"/wwwroot/contactFriends/webServer/application/views",
 		"/wwwroot/contactFriends/webServer/application/views/blog",
@@ -389,7 +398,6 @@
 		"/wwwroot/contactFriends/webServer/application/views/editor",
 		"/wwwroot/contactFriends/webServer/application/views/index",
 		"/wwwroot/contactFriends/webServer/application/views/user",
-		"/wwwroot/contactFriends/webServer/system/libraries",
 		"/wwwroot/contactFriends/webServer/wwwroot",
 		"/wwwroot/contactFriends/webServer/wwwroot/misc",
 		"/wwwroot/contactFriends/webServer/wwwroot/misc/css",
@@ -706,7 +714,7 @@
 	"groups":
 	[
 		{
-			"selected": 10,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -737,7 +745,7 @@
 						"translation.y": 693.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -767,7 +775,7 @@
 						"translation.y": 1840.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -865,7 +873,7 @@
 						"translation.y": 997.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -895,7 +903,7 @@
 						"translation.y": 7405.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -925,7 +933,7 @@
 						"translation.y": 3532.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -956,7 +964,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -986,7 +994,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -995,15 +1003,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3605,
+						"buffer_size": 3593,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								882,
-								882
+								871,
+								871
 							]
 						],
 						"settings":
@@ -1013,10 +1021,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 59.0,
+						"translation.y": 69.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1046,7 +1054,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1074,7 +1082,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
@@ -1105,7 +1113,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1134,7 +1142,7 @@
 						"translation.y": 1277.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -1143,15 +1151,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14708,
+						"buffer_size": 13149,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1322,
-								1322
+								475,
+								475
 							]
 						],
 						"settings":
@@ -1160,14 +1168,44 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 572.0,
+						"translation.y": 191.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 13,
+					"file": "webServer/application/models/lists/blog_list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								272,
+								272
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
 					"file": "webServer/system/libraries/Pagination.php",
 					"semi_transient": false,
 					"settings":
@@ -1192,11 +1230,11 @@
 						"translation.y": 637.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "webServer/application/models/list_model.php",
 					"semi_transient": false,
 					"settings":
@@ -1222,24 +1260,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 16,
 					"file": "webServer/application/models/records/blog_model.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2535,
+						"buffer_size": 2360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1235,
-								1235
+								1040,
+								1060
 							]
 						],
 						"settings":
@@ -1249,10 +1287,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 93.0,
+						"translation.y": 162.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

@@ -15,7 +15,11 @@
 
         parent::__construct();
         $CI =& get_instance();
-        $this->db = $CI->cimongo;
+        if (DB_TYPE=="MYSQL"){
+            $this->db = $CI->db;
+        } else {
+            $this->db = $CI->cimongo;
+        }
         $this->tableName = $tableName;
         $this->field_list = array();
         $this->orgId = 0;
@@ -112,11 +116,16 @@
     }
 
     public function init_with_id($id){
-        if (!is_object($id) && $this->id_is_id){
-            $real_id = new MongoId($id);
-        } else {
+        if (DB_TYPE=="MYSQL"){
             $real_id = $id;
+        } else {
+            if (!is_object($id) && $this->id_is_id){
+                $real_id = new MongoId($id);
+            } else {
+                $real_id = $id;
+            }
         }
+        
         $this->db->where(array('_id' => $real_id));
         $this->checkWhere();
 
@@ -132,7 +141,12 @@
     }
 
     public function init_with_data($id,$data,$isFullInit=true){
-        $this->id = $id->{'$id'};
+        if (DB_TYPE=="MYSQL"){
+            $this->id = $id;
+        } else {
+            $this->id = $id->{'$id'};
+        }
+        
         $this->data = $data;
         foreach ($data as $key => $value) {
             if (isset($this->field_list[$key])){
@@ -184,10 +198,14 @@
 
     public function insert_db($data){
         if (isset($this->field_list['_id']) && $this->field_list['_id']->typ == "Field_mongoid") {
-            if (!isset($data['_id'])) {
-                //补充_id 字段
-                $data['_id'] = new MongoId();
+            if (DB_TYPE=="MYSQL"){
+            } else {
+                if (!isset($data['_id'])) {
+                    //补充_id 字段
+                    $data['_id'] = new MongoId();
+                }
             }
+            
         }
         $this->db->insert($this->tableName, $data);
         return $this->db->insert_id();
@@ -197,7 +215,12 @@
         $effect = 0;
         $idArray = explode('-',$ids);
         foreach ($idArray as $id) {
-            $this->db->where(array('_id'=> new MongoId($id)))->delete($this->tableName);
+            if (DB_TYPE=="MYSQL"){
+                $tmpId = $id;
+            } else {
+                $tmpId = new MongoId($id);
+            }
+            $this->db->where(array('_id'=>$tmpId ))->delete($this->tableName);
             $effect += 1;
         }
         return $effect;

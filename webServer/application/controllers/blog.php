@@ -45,17 +45,14 @@ class Blog extends P_Controller {
 
         $data['postTS'] = $zeit;
         $data['editTS'] = $zeit;
+
         $data['postUser'] = $this->userInfo->uid;
 
-        $data['comments'] = array();
+        // $data['comments'] = array();
         $data['commentCount'] = 0;
-        $data['goods'] = array();
+        // $data['goods'] = array();
         $data['goodCount'] = 0;
 
-        $data['createUid'] = $this->userInfo->uid;
-        $data['createTS'] = $zeit;
-        $data['lastModifyUid'] = $this->userInfo->uid;
-        $data['lastModifyTS'] = $zeit;
         $checkRst = $this->dataInfo->check_data($data);
         if (!$checkRst){
             $jsonRst = -1;
@@ -66,6 +63,7 @@ class Blog extends P_Controller {
             return;
         }
         $newId = $this->dataInfo->insert_db($data);
+        //使用 mysql，这里如果需要的话，要初始化赞表和评论表不
 
         $jsonData = array();
         $jsonData['newId'] = (string)$newId;
@@ -79,21 +77,18 @@ class Blog extends P_Controller {
         }
         $this->login_verify();
         $this->load_menus();
-var_dump($id);
         $this->id = $id;
-var_dump($id);
         $this->load->model('records/Blog_model',"dataInfo");
-        var_dump($id);
         $this->dataInfo->init_with_id($id);
-var_dump($id);
         $this->load->model('records/User_model',"zanUser");
         $this->zanList = array();
 
-        foreach ($this->dataInfo->field_list['goods']->value as $this_uid) {
-            $this->zanUser->init_with_id($this_uid);
-            $this->zanList[] = array('id'=>$this->zanUser->field_list['_id']->toString(),
-                                     'name'=>$this->zanUser->field_list['name']->value);
-        }
+        //针对 Mysql 这里单独写
+        // foreach ($this->dataInfo->field_list['goods']->value as $this_uid) {
+        //     $this->zanUser->init_with_id($this_uid);
+        //     $this->zanList[] = array('id'=>$this->zanUser->field_list['_id']->toString(),
+        //                              'name'=>$this->zanUser->field_list['name']->value);
+        // }
 
         $this->template->load('default_page', 'blog/info');
     }

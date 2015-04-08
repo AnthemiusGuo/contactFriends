@@ -5,6 +5,7 @@ class Field_float extends Fields {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_float";
+        $this->baseTyp = "Field_float";
     }
     public function init($value){
         parent::init((float)$value);

@@ -6,6 +6,8 @@ class Field_array_colors extends Field_array_hash {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_array_hash";
+        $this->baseTyp = "Field_array";
+        
         $this->field_typ = "colors_model";
 
         $this->dataModel = new $this->field_typ();

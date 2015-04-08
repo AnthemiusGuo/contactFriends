@@ -20,6 +20,8 @@ define("VIEW_TYPE_PAGE", 1);
 define("VIEW_TYPE_HTML", 2);
 define("VIEW_TYPE_JSON", 3);
 
+
+
 class P_Controller extends CI_Controller {
 	public $uid;
 	public $userInfo;
@@ -37,7 +39,11 @@ class P_Controller extends CI_Controller {
 		date_default_timezone_set("Asia/Shanghai");
 
 		$this->is_login = false;
-        $this->db = $this->cimongo;
+        if (DB_TYPE=="MONGO"){
+            $this->db = $this->cimongo;
+        } else {
+
+        }
         $this->force_lightbox = false;
 		$this->load->helper('url');
         $this->controller_name = ($this->uri->segment(1)=="")?'index':$this->uri->segment(1);

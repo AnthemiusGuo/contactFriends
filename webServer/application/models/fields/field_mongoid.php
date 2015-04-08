@@ -5,12 +5,18 @@ class Field_mongoid extends Fields {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_mongoid";
+        $this->baseTyp = "Field_id";
     }
     public function init($value){
         parent::init($value);
     }
     public function gen_value($input){
-        $input = $input->{'$id'};
+        if (DB_TYPE=="MYSQL"){
+            $input = $input;
+        } else {
+            $input = $input->{'$id'};
+        }
+        
     
         return $input;
     }

@@ -5,6 +5,7 @@ class Field_ts extends Fields {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_ts";
+        $this->baseTyp = "Field_int";
 
     }
     public function init($value){

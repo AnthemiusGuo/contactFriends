@@ -5,6 +5,8 @@ class Field_array_hash extends Field_array {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_array_hash";
+        $this->baseTyp = "Field_array";
+        
         $this->field_typ = "Null_model";
         $this->hash_info = array('name'=>'名称','info'=>'信息');
         $this->value = array();

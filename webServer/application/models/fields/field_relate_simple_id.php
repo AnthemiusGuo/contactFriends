@@ -31,13 +31,16 @@ class Field_relate_simple_id extends Field_mongoid {
             return;
         }
         $this->valueSetted = true;
-
-        if (!is_object($value) && $this->relate_id_is_id){
-            $real_value = new MongoId($value);
-        } else {
+        if (DB_TYPE=="MYSQL"){
             $real_value = $value;
+        } else {
+            if (!is_object($value) && $this->relate_id_is_id){
+                $real_value = new MongoId($value);
+            } else {
+                $real_value = $value;
+            }
         }
-
+        
         $this->db->select(array($this->valueField,$this->showField))
             ->where(array($this->valueField => $real_value));
         $this->checkWhere();

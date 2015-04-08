@@ -23,12 +23,6 @@ class Blog_model extends Record_model {
         $this->field_list['editTS'] = $this->load->field('Field_date',"编辑日期","editTS");
 
         $this->field_list['postUser'] = $this->load->field('Field_userid',"发布人","beginTS");
-
-
-        $this->field_list['createUid'] = $this->load->field('Field_userid',"创建人","createUid");
-        $this->field_list['createTS'] = $this->load->field('Field_ts',"创建时间","createTS");
-        $this->field_list['lastModifyUid'] = $this->load->field('Field_userid',"最终编辑人","lastModifyUid");
-        $this->field_list['lastModifyTS'] = $this->load->field('Field_ts',"最终编辑时间","lastModifyTS");
     }
 
     public function gen_list_html($templates){

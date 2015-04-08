@@ -4,14 +4,23 @@ class List_model extends CI_Model {
     public $name;
     public $record_list;
     public $quickSearchWhere;
-    public $orderKey = array("_id"=>"desc");
+
+    public $orderKey;
 
 
     public function __construct($tableName = '') {
 
         parent::__construct();
         $CI =& get_instance();
-        $this->db = $CI->cimongo;
+        if (DB_TYPE=="MYSQL"){
+            $this->db = $CI->db;
+            $this->orderKey = array("_id"=>"desc");
+        } else {
+            $this->db = $CI->cimongo;
+            $this->orderKey = array("_id"=>"desc");
+        }
+
+        
 
         $this->tableName = $tableName;
         $this->record_list = array();
@@ -80,7 +89,7 @@ class List_model extends CI_Model {
         }
     }
 
-    public function add_quick_search_where($info) {
+    public function add_quick_search_where_mongo($info) {
         $regex = new MongoRegex("/$info/iu");
 
         $array = array();
@@ -94,12 +103,34 @@ class List_model extends CI_Model {
         $this->db->where(array('$or'=>$array),true);
     }
 
+    public function add_quick_search_where_mysql($info) {
+        if (count($this->quickSearchWhere)<=0){
+            return;
+        }
+        $search = array();
+        foreach ($this->quickSearchWhere as $key) {
+            if ($this->dataModel[$key]->baseTyp=='Field_string'){
+                $search[] = "`$key` LIKE '%$info%'";
+            } else if ($this->dataModel[$key]->baseTyp=='Field_int'){
+                $search[] = "`$key` = '$info'";
+            } else {
+                $search[] = "`$key` = '$info'";
+            }
+        }
+
+        $this->add_where(WHERE_TXT,'quick',implode(' OR ',$search));
+    }
+
     public function load_data_with_search($searchInfo,$limit=0){
         if ($searchInfo['t']=="no") {
             $this->load_data_with_where(0,$limit);
         } elseif ($searchInfo['t']=="quick"){
-
-            $this->add_quick_search_where($searchInfo['i']);
+            if (DB_TYPE=="MYSQL"){
+                $this->add_quick_search_where_mysql($searchInfo['i']);
+            } else {
+                $this->add_quick_search_where_mongo($searchInfo['i']);
+            }
+            
 
             $this->load_data_with_where(0,$limit);
         } elseif ($searchInfo['t']=="full"){
@@ -134,7 +165,13 @@ class List_model extends CI_Model {
 
         $this->db->where($where_clause, TRUE);
 
-        $this->db->order_by($this->orderKey);
+        if (DB_TYPE=="MYSQL"){
+            foreach ($this->orderKey as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        } else {
+            $this->db->order_by($this->orderKey);
+        }
         if ($limit>0){
             $this->db->limit($limit);
         }
@@ -167,8 +204,14 @@ class List_model extends CI_Model {
     public function load_data_with_orignal_where($where_array=array(),$limit=0){
 
         $this->db->where($where_array, TRUE);
-
-        $this->db->order_by($this->orderKey);
+        if (DB_TYPE=="MYSQL"){
+            foreach ($this->orderKey as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        } else {
+            $this->db->order_by($this->orderKey);
+        }
+        
         if ($limit>0){
             $this->db->limit($limit);
         }
@@ -198,6 +241,67 @@ class List_model extends CI_Model {
 
     }
 
+    public function add_search_where_mongo($typ,$fieldName,$fieldData) {
+        switch ($typ) {
+            case WHERE_TYPE_WHERE:
+                $this->db->where(array($fieldName=>$fieldData));
+                break;
+            case WHERE_TYPE_WHERE_GT:
+                $this->db->where_gt($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_GTE:
+                $this->db->where_gte($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_LT:
+                $this->db->where_lt($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_LTE:
+                $this->db->where_lte($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_NE:
+                $this->db->where_ne($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_IN:
+                $this->db->where_in($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_LIKE:
+                $this->db->like($fieldName, $fieldData,'iu');
+                break;
+        }
+    }
+
+    public function add_search_where_mysql($typ,$fieldName,$fieldData) {
+        switch ($typ) {
+            case WHERE_TYPE_WHERE:
+                $this->db->where($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_GT:
+                $this->db->where($fieldName,'>'.$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_GTE:
+                $this->db->where($fieldName,'>='.$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_LT:
+                $this->db->where($fieldName,'<'.$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_LTE:
+                $this->db->where($fieldName,'<='.$fieldData);
+                break;
+            case WHERE_TYPE_WHERE_NE:
+                $this->db->where($fieldName,'!='.$fieldData);
+                break;
+            case WHERE_TYPE_IN:
+                $this->db->where_in($fieldName,$fieldData);
+                break;
+            case WHERE_TYPE_LIKE:
+                $this->db->like($fieldName, $fieldData);
+                break;
+            case WHERE_TXT: 
+                $this->db->where($fieldData);
+                break;
+        }
+    }
+
     public function load_data_with_where($where_array=0,$limit=0){
         if ($where_array===0){
             $where_array = $this->whereData;
@@ -207,39 +311,24 @@ class List_model extends CI_Model {
             $typ = $value['typ'];
             $fieldName = $value['name'];
             $fieldData = $value['data'];
-
-            switch ($typ) {
-                case WHERE_TYPE_WHERE:
-                    $this->db->where(array($fieldName=>$fieldData));
-                    break;
-                case WHERE_TYPE_WHERE_GT:
-                    $this->db->where_gt($fieldName,$fieldData);
-                    break;
-                case WHERE_TYPE_WHERE_GTE:
-                    $this->db->where_gte($fieldName,$fieldData);
-                    break;
-                case WHERE_TYPE_WHERE_LT:
-                    $this->db->where_lt($fieldName,$fieldData);
-                    break;
-                case WHERE_TYPE_WHERE_LTE:
-                    $this->db->where_lte($fieldName,$fieldData);
-                    break;
-                case WHERE_TYPE_WHERE_NE:
-                    $this->db->where_ne($fieldName,$fieldData);
-                    break;
-                case WHERE_TYPE_IN:
-                    $this->db->where_in($fieldName,$fieldData);
-                    break;
-                case WHERE_TYPE_LIKE:
-                    $this->db->like($key, $value['data'],'iu');
-                    break;
+            if (DB_TYPE=="MYSQL"){
+                $this->add_search_where_mysql($typ,$fieldName,$fieldData);
+            } else {
+                $this->add_search_where_mongo($typ,$fieldName,$fieldData);
             }
+            
         }
         if ($this->whereOrgId!==null && isset($this->dataModel['orgId'])){
             $this->db->where(array('orgId'=>$this->whereOrgId));
         }
 
-        $this->db->order_by($this->orderKey);
+        if (DB_TYPE=="MYSQL"){
+            foreach ($this->orderKey as $key => $value) {
+                $this->db->order_by($key,$value);
+            }
+        } else {
+            $this->db->order_by($this->orderKey);
+        }
         if ($limit>0){
             $this->db->limit($limit);
         }

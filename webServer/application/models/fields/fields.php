@@ -12,7 +12,11 @@ class Fields {
 
     public function __construct($show_name,$name,$is_must_input=false) {
         $this->CI =& get_instance();
-        $this->db = $this->CI->cimongo;
+        if (DB_TYPE=="MYSQL"){
+            $this->db = $this->CI->db;
+        } else {
+            $this->db = $this->CI->cimongo;
+        }
         $this->show_name = $show_name;
         $this->name = $name;
         $this->default = "";

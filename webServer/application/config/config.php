@@ -14,6 +14,9 @@
 | path to your installation.
 |
 */
+// define('DB_TYPE','MONGO');
+define('DB_TYPE','MYSQL');
+
 $config['base_url']	= '';
 $config['static_url']	= '/misc';
 $config['login_expire'] = 86400;

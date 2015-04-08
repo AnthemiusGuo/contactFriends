@@ -6,6 +6,7 @@ class Field_array extends Fields {
     public function __construct($show_name,$name,$is_must_input=false) {
         parent::__construct($show_name,$name,$is_must_input);
         $this->typ = "Field_array";
+        $this->baseTyp = "Field_array";
     }
     public function init($value){
         $this->value = $value;
