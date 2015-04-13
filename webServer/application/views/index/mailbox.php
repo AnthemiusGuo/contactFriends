@@ -6,7 +6,6 @@
     <li class="in">
         <!-- <img class="avatar img-responsive" alt="" src="assets/img/avatar1.jpg"> -->
         <div class="senderOrg pull-left">
-            <?=$this_record->field_list["orgId"]->gen_show_html()?><br/>
             <?=$this_record->field_list["fromUid"]->gen_show_html()?>
         </div>
         <div class="message <?=($this_record->field_list["readed"]->value==0)?'unread':''?>" >

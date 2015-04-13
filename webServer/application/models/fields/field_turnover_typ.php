@@ -35,10 +35,6 @@ class Field_turnover_typ extends Field_relate_simple_id {
     public function add_where($typ,$name,$data){
         $this->whereData[$name] = array('typ'=>$typ,'data'=>$data);
     }
-    public function setOrgId($orgId){
-        parent::setOrgId($orgId);
-        $this->whereOrgId = $orgId;
-    }
     
     private function setEnum(){
         $this->CI->db->select("id,name,typ")

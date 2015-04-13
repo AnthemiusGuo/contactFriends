@@ -19,7 +19,6 @@ class Blog extends P_Controller {
         $this->createUrlF = 'doCreateBlog';
 
         $this->load->model('records/blog_model',"dataInfo");
-        $this->dataInfo->setRelatedOrgId($this->myOrgId);
 
         $this->createPostFields = $this->dataInfo->buildChangeNeedFields();
         $this->modifyNeedFields = $this->dataInfo->buildChangeShowFields();
@@ -41,7 +40,6 @@ class Blog extends P_Controller {
             $data[$value] = $this->dataInfo->field_list[$value]->gen_value($this->input->post($value));
         }
 
-        $data['orgId'] = $this->myOrgId;
 
         $data['postTS'] = $zeit;
         $data['editTS'] = $zeit;
@@ -76,64 +74,80 @@ class Blog extends P_Controller {
             return;
         }
         $this->login_verify();
-        $this->load_menus();
         $this->id = $id;
         $this->load->model('records/Blog_model',"dataInfo");
         $this->dataInfo->init_with_id($id);
-        $this->load->model('records/User_model',"zanUser");
-        $this->zanList = array();
 
-        //针对 Mysql 这里单独写
-        // foreach ($this->dataInfo->field_list['goods']->value as $this_uid) {
-        //     $this->zanUser->init_with_id($this_uid);
-        //     $this->zanList[] = array('id'=>$this->zanUser->field_list['_id']->toString(),
-        //                              'name'=>$this->zanUser->field_list['name']->value);
-        // }
+        $this->load->model('lists/zan_list',"zanList");
+        $this->zanList->load_data_with_foreign_key("blogId",$id);
+
+        $this->load->model('lists/comment_list',"commentList");
+        $this->commentList->load_data_with_foreign_key("blogId",$id);
 
         $this->template->load('default_page', 'blog/info');
     }
 
     function doZan($id){
         $this->login_verify(true);
-        $this->load->model('records/Blog_model',"dataInfo");
-        $this->dataInfo->init_with_id($id);
-        $data = array();
-        if (in_array($this->uid,$this->dataInfo->field_list['goods']->value)){
-            $this->load->library("utility");
-            $data['goods'] = $this->utility->array_remove($this->uid,$this->dataInfo->field_list['goods']->value);
-            $data['goodCount'] = count($data['goods']);
-        } else {
-            $data['goods'][] = $this->uid;
-            $data['goodCount'] = count($data['goods']);
-        }
-        $this->dataInfo->update_db($data,$id);
+        
+        $modelName = 'records/Zan_model';
+        $jsonRst = 1;
+        $zeit = time();
 
-        $this->zanList = array();
 
-        foreach ($this->dataInfo->field_list['goods']->value as $this_uid) {
-            $this->zanUser->init_with_id($this_uid);
-            $this->zanList[] = array('id'=>$this->zanUser->field_list['_id']->toString(),
-                                     'name'=>$this->zanUser->field_list['name']->value);
-        }
-        $this->zanList[] = array('id'=>$this->uid,'name'=>$this->userInfo->field_list['name']->value);
-        $jsonData['dataCount'] = $data['goodCount'];
-        $jsonData['data'] = $this->zanList;
+        $this->load->model($modelName,"dataInfo");
 
-        echo $this->exportData($jsonData,1);
+        $data['postTS'] = $zeit;
+        $data['blogId'] = $id;
+
+        $data['postUid'] = $this->userInfo->uid;
+
+        $newId = $this->dataInfo->insert_db($data);
+
+        //更新计数
+        $this->load->model('lists/zan_list',"zanList");
+        $this->zanList->load_data_with_foreign_key("blogId",$id);
+        $count = count($this->zanList->record_list);
+
+        $count_data['goodCount'] = $count;
+        $this->load->model('records/Blog_model',"blogInfo");
+        $this->blogInfo->update_db($count_data,$id);
+
+        $jsonData = array();
+        $jsonData['goto_url'] = site_url('blog/info/'.$id);
+        echo $this->exportData($jsonData,$jsonRst);
     }
 
     function doComment($id){
         $this->login_verify(true);
-        $this->load->model('records/Blog_model',"dataInfo");
-        $this->dataInfo->init_with_id($id);
-
         $comment = $this->input->post('comment');
 
-        $this->dataInfo->field_list['comments']->addNewLine($comment);
-        
-        $jsonData['dataCount'] = $data['goodCount'];
-        $jsonData['data'] = $this->zanList;
+        $this->load->model('records/Comment_model',"dataInfo");
+        $this->dataInfo->init_with_id($id);
 
-        echo $this->exportData($jsonData,1);
+        $jsonRst = 1;
+        $zeit = time();
+
+        $data['postTS'] = $zeit;
+        $data['blogId'] = $id;
+
+        $data['postUid'] = $this->userInfo->uid;
+        $data['content'] = $comment;
+
+        $newId = $this->dataInfo->insert_db($data);
+
+
+        //更新计数
+        $this->load->model('lists/comment_list',"commentList");
+        $this->commentList->load_data_with_foreign_key("blogId",$id);
+        $count = count($this->commentList->record_list);
+
+        $count_data['commentCount'] = $count;
+        $this->load->model('records/Blog_model',"blogInfo");
+        $this->blogInfo->update_db($count_data,$id);
+
+        $jsonData = array();
+        $jsonData['goto_url'] = site_url('blog/info/'.$id);
+        echo $this->exportData($jsonData,$jsonRst);
     }
 }

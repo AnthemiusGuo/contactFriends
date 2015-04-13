@@ -12,8 +12,6 @@ class Index extends P_Controller {
 
 		$this->login_verify();
 
-		$this->load_menus();
-
 		//TODO
 		$this->needInputUserInfo = false;
 
@@ -22,7 +20,6 @@ class Index extends P_Controller {
 
         $this->load->model('lists/Blog_list',"listInfo");
         
-        // $this->listInfo->setOrgId($this->myOrgId);
         $this->listInfo->load_data();
         
 
@@ -275,16 +272,48 @@ http://www.npone.cn<br/>
 
 	function doReg(){
 		$input_data = array();
-		$input_data['email'] = $this->input->post('uEmail');
-		$input_data['phone'] = $this->input->post('uPhone');
-		$input_data['pwd'] = $this->input->post('uPassword');
-		$input_data['inviteCode'] = $this->input->post('uInvite');
-		$input_data['name'] = $this->input->post('uName');
+		$input_data['email'] = trim($this->input->post('uEmail'));
+		$input_data['phone'] = trim($this->input->post('uPhone'));
+		$input_data['pwd'] = trim($this->input->post('uPassword'));
+		$input_data['inviteCode'] = trim($this->input->post('uInvite'));
+		$input_data['name'] = trim($this->input->post('uName'));
 		//这块需要做输入过滤，防XSS等，暂时省略
 
+		//
 		$this->load->model('records/user_model',"userModel");
+		$this->userModel->init_by_phone($input_data['phone']);
 
-		$ret = $this->userModel->reg_user($input_data);
+		//这块确定下怎么做，到底是必须先创建再注册，还是可以直接注册
+		if ($this->userModel->is_inited){
+			//手机号已经存在
+			if ($this->userModel->field_list['typ']->value==0){
+				//未注册
+				// 判断邀请码
+				if ($input_data['inviteCode']!=$this->userModel->field_list['inviteCode']->value){
+					//已注册，报错
+					echo $this->exportData(array('err'=>array('id'=>'uInvite','msg'=>'邀请码错误')),-2);
+					return;
+				}
+				$data = array(
+				            'pwd'=>md5($input_data['pwd']),
+				            'typ'=>1
+				              );
+				$ret = $this->userModel->update_db($data,$this->userModel->field_list['_id']->value);
+				if ($ret){
+					$ret = 1;
+				}
+			} else {
+				//已注册，报错
+				echo $this->exportData(array('err'=>array('id'=>'uPhone','msg'=>'用户已经存在')),-2);
+				return;
+
+			
+			}
+		} else {
+			$ret = $this->userModel->reg_user($input_data);
+		}
+
+		
 		if ($ret>0){
 			$uid = $this->userModel->uid;
 			$this->login->process_login($input_data['email'],$uid,true);
@@ -319,7 +348,8 @@ http://www.npone.cn<br/>
 			echo $this->exportData($data,$login_rst);
 		} else {
 			$err_codes = array(-1=>array('id'=>'uPhone','msg'=>'用户不存在'),
-								-2=>array('id'=>'uPassword','msg'=>'密码不正确'));
+								-2=>array('id'=>'uPassword','msg'=>'密码不正确'),
+								-3=>array('id'=>'uPhone','msg'=>'用户已录入，但未注册，请注册用户'));
 			$err_code = isset($err_codes[$login_rst])? $err_codes[$login_rst]:array('id'=>'uPhone','msg'=>'未知错误');
 			;
 

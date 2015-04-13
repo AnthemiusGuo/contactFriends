@@ -15,7 +15,7 @@ class User_model extends Record_model {
         $this->field_list['_id'] = $this->load->field('Field_mongoid',"uid","_id");
 
         $this->field_list['email'] = $this->load->field('Field_email',"电子邮箱","email");
-        $this->field_list['phone'] = $this->load->field('Field_string',"电话","phone");
+        $this->field_list['phone'] = $this->load->field('Field_string',"电话","phone",true);
         $this->field_list['qq'] = $this->load->field('Field_string',"QQ","qq");
         $this->field_list['weixin'] = $this->load->field('Field_string',"微信","weixin");
 
@@ -25,39 +25,10 @@ class User_model extends Record_model {
 
         $this->field_list['isAdmin'] = $this->load->field('Field_bool',"超级管理员","isAdmin");
         $this->field_list['pwd'] = $this->load->field('Field_pwd',"密码","pwd");
-        $this->field_list['orgId'] = $this->load->field('Field_relate_org',"商户","orgId");
 
-        $this->field_list['name'] = $this->load->field('Field_title',"姓名","name");
+        $this->field_list['name'] = $this->load->field('Field_title',"姓名","name",true);
         $this->field_list['inviteCode'] = $this->load->field('Field_string',"邀请码","inviteCode");
         $this->field_list['intro'] = $this->load->field('Field_text',"个人介绍","intro");
-
-        $this->field_list['everEdit'] = $this->load->field('Field_int',"曾修改","everEdit");
-
-    }
-
-    public function buildShowCard(){
-        $_html = '<div class="shopInfoCard">';
-        $url = '#';//$this->gen_front_url();
-        $_html .= '<h4><a href="'.$url.'" target="_blank">'.$this->field_list['name']->gen_show_html().'</a></h4>';
-        if (!$this->field_list['orgId']->isEmpty()){
-            $_html .= '<span class="shopBegin"> '.$this->field_list['orgId']->gen_show_html().' </span>';
-        }
-
-        $_html .= '<span class="shopBegin"> '.$this->field_list['sign']->gen_show_html().' </span>';
-        $_html .= '<p class="shopDesc">'.$this->field_list['intro']->gen_show_html().'</p>';
-
-        $_html .= '<dt>电话</dt>';
-        $_html .= '<dd>'.$this->field_list['phone']->gen_show_html().'</dd>';
-        $_html .= '<dt>电邮</dt>';
-        $_html .= '<dd>'.$this->field_list['email']->gen_show_html().'</dd>';
-        // $_html .= '<dt>微信</dt>';
-        // $_html .= '<dd>'.$this->field_list['orgId']->gen_show_html().'</dd>';
-        // $_html .= '<dt>旺旺</dt>';
-        // $_html .= '<dd>'.$this->field_list['wangwang']->gen_show_html().'</dd>';
-        $_html .= '<div class="clearfix"></div></div>';
-
-
-        return $_html;
     }
 
     public function buildChangeShowFields(){
@@ -90,56 +61,10 @@ class User_model extends Record_model {
         return $allow_ops;
     }
 
-    public function gen_auth_code($client_id=''){
-        $auth_code = uniqid($this->uid);
-        $this->update_db(array('client_auth_code'=>$auth_code,'client_id'=>$client_id),$this->uid);
-        return $auth_code;
-    }
-
-    public function check_auth_code($auth_code){
-        $this->db->where(array('client_auth_code'=>$auth_code));
-
-        $query = $this->db->get($this->tableName);
-        if ($query->num_rows() > 0)
-        {
-            $result = $query->row_array();
-            $this->init_with_data($result['_id'],$result);
-            return 1;
-        }
-        else
-        {
-            return -1;
-        }
-    }
-
-
-    public function init($id){
-
-        parent::init($id);
-        $this->db->select('*')
-                    ->from('uUser')
-                    ->where('uid', $id);
-
-        $query = $this->db->get();
-        if ($query->num_rows() > 0)
-        {
-            $result = $query->row_array();
-            $this->init_with_data($id,$result);
-        }
-        else
-        {
-            return -1;
-        }
-
-    }
 
     public function init_by_uid($uid){
         parent::init($uid);
-        if (DB_TYPE=="MYSQL"){
             $id = $uid;
-        } else {
-            $id = new MongoId($uid);
-        }
         
         $this->db->where(array('_id'=>$id));
 
@@ -156,15 +81,14 @@ class User_model extends Record_model {
         }
     }
 
-    public function init_with_email($email){
-        parent::init($id);
-        $this->db->where(array('email'=>$email));
+    public function init_by_phone($phone){
+        $this->db->where(array('phone'=>$phone));
 
         $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
             $result = $query->row_array();
-            $this->init_with_data($id,$result);
+            $this->init_with_data($result['_id'],$result);
             return 1;
         }
         else
@@ -176,54 +100,14 @@ class User_model extends Record_model {
 
     public function init_with_data($id,$data){
         parent::init_with_data($id,$data);
-        if (DB_TYPE=="MYSQL"){
             $this->uid = $id;
-        } else {
-            $this->uid = $id->{'$id'};
-        }
         
         $this->uname = $data['name'];
     }
 
-    public function check_user_inputed($email,$orgId=0){
-        $this->db->select('inviteCode,orgId')
-                    ->from('pPeaple')
-                    ->where('email', $email);
-        if ($orgId>0){
-            $this->db->where('orgId', $orgId);
-        }
-        $query = $this->db->get();
-        $result = array();
-        foreach ($query->result_array() as $row)
-        {
-           $result[$row['inviteCode']] = $row['orgId'];
-        }
-        return $result;
-    }
-
-    public function update_pPeaple_binding($orgId,$email){
-        $data = array(
-               'uid' => $this->uid
-            );
-
-        $this->db->where('orgId', $orgId)
-                ->where('email', $email)
-                ->update('pPeaple', $data);
-    }
-
-    public function check_email_exist($email){
-        $this->db->where(array('email'=>$email));
-        $query = $this->db->get($this->tableName);
-        if ($query->num_rows() > 0)
-        {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public function check_phone_exist($phone){
-        $this->db->where(array('phone'=>$phone));
+        $this->db->where(array('phone'=>trim($phone)));
         $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)
         {
@@ -248,17 +132,14 @@ class User_model extends Record_model {
             }
             $data[$key] = $this->field_list[$key]->gen_value($input[$key]);
         }
-
-        $data['orgId'] = 0;
+        $data['pwd'] = md5($input['pwd']);
 
         $data['regTS'] = time();
-        $data['typ'] = 0;
+        $data['typ'] = 1;
 
         $data['inviteCode'] = substr(md5($zeit.rand(0,100000)), 5,8);
         
-        if (isset($input['third_plat'])) {
-            $data['third_typ_'.$input['third_plat']] = $input['third_id'];
-        }
+
 
         $checkRst = $this->check_data($data);
         if (!$checkRst){
@@ -282,13 +163,17 @@ class User_model extends Record_model {
 
     public function verify_login($email,$pwd){
 
-        $this->db->or_where(array('phone'=>$email,'email'=>$email));
+        $this->db->where(array('phone'=>$email));
 
         $query = $this->db->get($this->tableName);
 
         if ($query->num_rows() > 0)
         {
             $result = $query->row_array();
+            if ($result['typ']==0){
+                //未注册
+                return -3;
+            }
             $real_pwd = $result['pwd'];
             if (strtolower(md5($pwd))==strtolower($real_pwd)){
 
@@ -305,46 +190,6 @@ class User_model extends Record_model {
         }
     }
 
-    public function verify_third_login($third_typ,$third_id){
-        $this->db->where(array('third_typ_'.$third_typ=>$third_id));
-        $query = $this->db->get($this->tableName);
-
-        if ($query->num_rows() > 0)
-        {
-            $result = $query->row_array();
-            $this->init_with_data($result['_id'],$result);
-            return 1;
-        }
-        else
-        {
-            return -1;
-        }
-    }
-
-    public function bind_third($third_typ,$third_id){
-        if (isset($this->none_field_data['third_typ_'.$third_typ])){
-            if ($this->none_field_data['third_typ_'.$third_typ]==$third_id){
-                return 2;
-            } else {
-                return -1;
-            }
-        } else {
-            //执行绑定
-            $this->update_db(array('third_typ_'.$third_typ=>$third_id),$this->uid);
-            return 1;
-        }
-
-    }
-
-
-
-    public function forceChangePwd($email,$new_password){
-        $data = array(
-           'pwd' => strtolower(md5($new_password))
-        );
-        $this->db->where(array('email'=>$email));
-        $this->db->update('uUser', $data);
-    }
     public function changePwd($pwd,$pwdNew){
 
         if (strtolower(md5($pwd))!=strtolower($this->field_list['pwd']->value)){

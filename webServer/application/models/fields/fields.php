@@ -34,10 +34,6 @@ class Fields {
     public function baseInit($value){
         $this->value = $value;
     }
-
-    public function setOrgId($orgId){
-        $this->orgId = $orgId;
-    }
     public function gen_show_name(){
         return '<span class="field_name">'.$this->show_name.'</span>';
     }

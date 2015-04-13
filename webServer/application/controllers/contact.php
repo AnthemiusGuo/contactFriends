@@ -38,7 +38,6 @@ class Contact extends P_Controller {
         $this->createUrlF = 'doCreateUser';
 
         $this->load->model('records/user_model',"dataInfo");
-        $this->dataInfo->setRelatedOrgId($this->myOrgId);
 
         $this->createPostFields = $this->dataInfo->buildChangeNeedFields();
         $this->modifyNeedFields = $this->dataInfo->buildChangeShowFields();
@@ -59,8 +58,17 @@ class Contact extends P_Controller {
         foreach ($this->createPostFields as $value) {
             $data[$value] = $this->dataInfo->field_list[$value]->gen_value($this->input->post($value));
         }
-
-        $data['orgId'] = $this->myOrgId;
+        //检查phone 是否重复
+        if (isset($data['phone'])){
+            if ($this->dataInfo->check_phone_exist($data['phone'])){
+                $jsonRst = -3;
+                $jsonData = array();
+                $jsonData['err']['id'] ='creator_phone';
+                $jsonData['err']['msg'] ='这个手机号已经有人使用';
+                echo $this->exportData($jsonData,$jsonRst);
+                return false;
+            }
+        }
 
         $data['regTS'] = $zeit;
         $data['typ'] = 0;
@@ -87,18 +95,27 @@ class Contact extends P_Controller {
     function editUser($id){
         $this->setViewType(VIEW_TYPE_HTML);
 
-        $this->createUrlC = 'management';
+        $this->createUrlC = 'contact';
         $this->createUrlF = 'doUpdateUser';
 
         $this->load->model('records/User_model',"dataInfo");
-        $this->dataInfo->setRelatedOrgId($this->myOrgId);
         $this->dataInfo->init_with_id($id);
 
         $this->createPostFields = $this->dataInfo->buildChangeNeedFields();
         $this->modifyNeedFields = $this->dataInfo->buildChangeShowFields();
+        
+
 
         $this->editor_typ = 1;
-        $this->title_create = "编辑员工信息";
+        if ($this->uid==$id){
+            $this->title_create = "编辑我的信息";
+            //自己可以改密码
+            $this->createPostFields[] = 'pwd';
+            $this->modifyNeedFields[] = array('pwd');
+        } else {
+            $this->title_create = "编辑联系人信息";
+        }
+        
         $this->template->load('default_lightbox_edit', 'common/create');
     }
 
@@ -139,10 +156,20 @@ class Contact extends P_Controller {
         }
         $zeit = time();
 
-
+        //检查phone 是否重复
+        if (isset($data['phone'])){
+            if ($this->dataModel->check_phone_exist($data['phone'])){
+                $jsonRst = -3;
+                $jsonData = array();
+                $jsonData['err']['id'] ='modify_phone';
+                $jsonData['err']['msg'] ='这个手机号已经有人使用';
+                echo $this->exportData($jsonData,$jsonRst);
+                return false;
+            }
+        }
         $this->dataModel->update_db($data,$id);
 
-        $jsonData['goto_url'] = site_url('management/hr');
+        $jsonData['goto_url'] = site_url('contact/info/'.$id);
         echo $this->exportData($jsonData,$jsonRst);
     }
 
@@ -185,7 +212,6 @@ class Contact extends P_Controller {
 
     function my(){
         $this->login_verify(true);
-        $this->load_menus();
 
         $this->id = $this->uid;
 
@@ -204,7 +230,6 @@ class Contact extends P_Controller {
             return;
         }
         $this->login_verify();
-        $this->load_menus();
 
         $this->id = $id;
 

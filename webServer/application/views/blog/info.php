@@ -12,10 +12,10 @@
     <div class="pull-right">
         <div class="clear"></div>
         <a href="#" onclick="zan_blog('<?=$this->dataInfo->field_list['_id']->toString()?>')" class="btn btn-sm btn-default">
-            <span class='glyphicon glyphicon-thumbs-up'></span> <span class="good_count"><?=$this->dataInfo->field_list['goodCount']->gen_show_value()?></span>
+            <span class='glyphicon glyphicon-thumbs-up'></span> <span class="good_count"><?=count($this->zanList->record_list)?></span>
             </a>
         <a href="#" class="btn btn-sm btn-default">
-            <span class='glyphicon glyphicon-comment'></span> <span class="comment_count"><?=$this->dataInfo->field_list['commentCount']->gen_show_value()?></span>
+            <span class='glyphicon glyphicon-comment'></span> <span class="comment_count"><?=count($this->commentList->record_list)?></span>
         </a>
         
     </div>
@@ -25,13 +25,13 @@
     <div>
     <ul class="list-inline zanList">
         <?
-        foreach ($this->zanList as $key => $value) {
+        foreach ($this->zanList->record_list as $key => $value) {
         ?>
-            <li><a href="<?=$value['id']?>"><?=$value['name']?></a></li>
+            <li><a href="<?=site_url('contact/info/'.$value->field_list['postUid']->value)?>"><?=$value->field_list['postUid']->gen_show_html()?></a></li>
         <?
         }
 
-        if (count($this->zanList)==0){
+        if (count($this->zanList->record_list)==0){
             echo '目前还没有赞';
         } else {
             echo '赞了这篇文章';
@@ -41,18 +41,28 @@
     </div>
     <hr/>
     <div>
+    <h3>评论</h3>
         <?
-        if (count($this->dataInfo->field_list['comments']->datas)==0) {
+        if (count($this->commentList->record_list)==0) {
             echo '目前还没有评论';
-        }
+        } 
         ?>
+
         <table class="table table-striped simplePagerContainer">
             
         <?
-        foreach ($this->dataInfo->field_list['comments']->datas as $key => $value) {
+        foreach ($this->commentList->record_list as $key => $value) {
         ?>
             <tr>
-                <td><? var_dump($value); ?></td>
+                <td>
+                    <a href="<?=site_url('contact/info/'.$value->field_list['postUid']->value)?>"><?=$value->field_list['postUid']->gen_show_html()?></a>
+                </td>
+                <td>
+                    <?=$value->field_list['postTS']->gen_show_html()?>
+                </td>
+                <td>
+                    <?=$value->field_list['content']->gen_show_html()?>
+                </td>
             </tr>
         <?
         }
@@ -62,7 +72,7 @@
             <div class="form-group">
                 <textarea class="form-control" id="commentInput" placeholder="输入评论"></textarea>
             </div>
-            <button type="button" class="btn btn-primary pull-right" onclick="sendComments('<?=$this->dataInfo->field_list['_id']->toString()?>'">评论</button>
+            <button type="button" class="btn btn-primary pull-right" onclick="sendComments('<?=$this->dataInfo->field_list['_id']->toString()?>')">评论</button>
         </form>
         <br/>
     </div>

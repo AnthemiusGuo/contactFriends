@@ -107,11 +107,6 @@ class Field_related_multi_ids extends Field_relate_simple_id {
     }
     public function plusCreate($input){
         $this->plusCreateData[$this->showField] = $input[$this->showField];
-        if (isset($this->whereOrgId)){
-            $this->plusCreateData['orgId'] = $this->whereOrgId;
-        } else {
-            $this->plusCreateData['orgId'] = $this->CI->orgId;
-        }
         $this->CI->db->insert($this->tableName,$this->plusCreateData);
         return $this->CI->db->insert_id();
     }

@@ -49,11 +49,6 @@ class Field_related_id extends Field_relate_simple_id {
     }
     public function plusCreate($input){
         $this->plusCreateData[$this->showField] = $input;
-        if (isset($this->whereOrgId)){
-            $this->plusCreateData['orgId'] = $this->whereOrgId;
-        } else {
-            $this->plusCreateData['orgId'] = $this->CI->myOrgId;
-        }
 
         $this->CI->db->insert($this->tableName,$this->plusCreateData);
         return $this->CI->db->insert_id();
@@ -72,10 +67,6 @@ class Field_related_id extends Field_relate_simple_id {
 
         $this->db->select(array($this->valueField,$this->showField))
             ->where(array($this->showField => $input));
-        if (!isset($this->whereOrgId)){
-            $this->whereOrgId = $this->CI->myOrgId;
-        }
-        $this->db->where(array('orgId'=>$this->whereOrgId));
 
         $query = $this->db->get($this->tableName);
         if ($query->num_rows() > 0)

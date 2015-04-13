@@ -13,7 +13,6 @@ class Field_relate_simple_id extends Field_mongoid {
         $this->valueSetted = false;
         $this->showValue = ' - ';
         $this->enum = array();
-        $this->needOrgId = 1;
         $this->relate_id_is_id = true;
         $this->value_checked = 0;
     }
@@ -69,10 +68,6 @@ class Field_relate_simple_id extends Field_mongoid {
     public function add_where($typ,$name,$data){
         $this->whereData[$name] = array('typ'=>$typ,'data'=>$data);
     }
-    public function setOrgId($orgId){
-        parent::setOrgId($orgId);
-        $this->whereOrgId = $orgId;
-    }
     public function checkWhere(){
         $where_array = $this->whereData;
         foreach ($where_array as $key => $value) {
@@ -93,11 +88,7 @@ class Field_relate_simple_id extends Field_mongoid {
             }
         }
 
-        if ($this->whereOrgId>0 && $this->needOrgId==1){
-            $this->db->where('orgId', $this->whereOrgId);
-        } elseif ($this->whereOrgId>0 && $this->needOrgId==2){
-            $this->db->where_in('orgId',array($this->whereOrgId,0));
-        }
+        
     }
     private function setEnum(){
         $this->db->select("{$this->valueField},{$this->showField}");

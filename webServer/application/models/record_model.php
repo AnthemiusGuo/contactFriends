@@ -3,13 +3,13 @@
     public $id;
     public $field_list;
     public $tableName;
-    public $orgId;
     public $deleteCtrl = '';
     public $deleteMethod = '';
     public $edit_link = '';
     public $info_link = '';
     public $id_is_id = true;//id字段是mongoid对象还是字符串
     public $none_field_data = array();
+    public $is_inited = false;
 
     public function __construct($tableName='') {
 
@@ -22,7 +22,6 @@
         }
         $this->tableName = $tableName;
         $this->field_list = array();
-        $this->orgId = 0;
         $this->errData = '';
         $this->relateTableName = array();
 
@@ -55,12 +54,6 @@
         $arrayRst = array();
         foreach ($this->field_list as $key => $value) {
             $arrayRst[$key] = $value->value;
-        }
-    }
-    public function setRelatedOrgId($orgId){
-        $this->orgId = $orgId;
-        foreach ($this->field_list as $key => $value) {
-            $value->setOrgId($orgId);
         }
     }
     public function gen_list_html($templates){
@@ -146,7 +139,7 @@
         } else {
             $this->id = $id->{'$id'};
         }
-        
+        $this->is_inited = true;
         $this->data = $data;
         foreach ($data as $key => $value) {
             if (isset($this->field_list[$key])){
@@ -240,57 +233,10 @@
 
 
      public function update_db($data,$id){
-        if (!is_object($id) && $this->id_is_id){
-            $real_id = new MongoId($id);
-        } else {
-            $real_id = $id;
-        }
-
-        $this->db->where(array('_id'=>$real_id))->update($this->tableName,$data);
+        $this->db->where(array('_id'=>$id))->update($this->tableName,$data);
         return true;
     }
 
-    public function genShowId($orgId,$typ){
-         $this->db->select('*')
-                    ->from('oMaxIds')
-                    ->where('orgId', $orgId);
-
-        $query = $this->db->get();
-
-        if ($query->num_rows() > 0)
-        {
-            $result = $query->row_array();
-        }
-        else
-        {
-            $this->db->insert('oMaxIds', array("orgId"=>$orgId));
-            $result = array("orgId"=>$orgId);
-        }
-        //处理年份
-        if (!isset($result['lastModifyTs'])){
-            $result['lastModifyTs'] = 0;
-        }
-
-        $zeit  = time();
-        $now_year = date('Y',$zeit);
-        $last_modify_year = date('Y',$result['lastModifyTs']);
-
-        if ($now_year > $last_modify_year) {
-            $result[$typ] = 0;
-        }
-
-        if (!isset($result[$typ])){
-            $update[$typ] = 1;
-        } else {
-
-            $update[$typ] = $result[$typ]+1;
-        }
-        $update["lastModifyTs"] = $zeit;
-        $this->db->where('orgId', $orgId)->update('oMaxIds',$update);
-
-        return $now_year . sprintf("%06d",$update[$typ]);
-
-    }
 
     function checkImportDataBase($data,$cfg_field_lists){
         $errorData = array();

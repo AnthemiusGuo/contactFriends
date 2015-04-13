@@ -10,13 +10,10 @@ class Blog_model extends Record_model {
 
         $this->field_list['_id'] = $this->load->field('Field_mongoid',"id","_id");
         $this->field_list['title'] = $this->load->field('Field_string',"标题","title",true);
-        $this->field_list['orgId'] = $this->load->field('Field_mongoid',"组织","orgId");
 
         $this->field_list['content'] = $this->load->field('Field_rich_text',"文章","content",true);
         $this->field_list['goodCount'] = $this->load->field('Field_int',"赞","goodCount");
         $this->field_list['commentCount'] = $this->load->field('Field_int',"评论","commentCount");
-        $this->field_list['goods'] = $this->load->field('Field_array',"赞","goods");
-        $this->field_list['comments'] = $this->load->field('Field_array_comments',"评论","comments");
         
 
         $this->field_list['postTS'] = $this->load->field('Field_date',"发布日期","beginTS");

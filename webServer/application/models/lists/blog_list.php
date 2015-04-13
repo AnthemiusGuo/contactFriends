@@ -7,9 +7,6 @@ class Blog_list extends List_model {
         parent::init("Blog_list","Blog_model");
     }
 
-    public function build_search_infos(){
-        return array('status','payStatus','beginTS');
-    }
     public function build_inline_list_titles(){
         return array('items','status','payStatus','totalGetting','beginTS');
     }

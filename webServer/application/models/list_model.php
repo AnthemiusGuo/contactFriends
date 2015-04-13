@@ -25,18 +25,11 @@ class List_model extends CI_Model {
         $this->tableName = $tableName;
         $this->record_list = array();
         $this->whereData = array();
-        $this->whereOrgId = null;
         $this->quickSearchWhere = array("name");
         $this->is_lightbox = true;
         $this->recordCount = 0;
     }
 
-    public function setOrgId($orgId) {
-        $this->whereOrgId = $orgId;
-        foreach ($this->dataModel as $key => $value) {
-            $value->setOrgId($orgId);
-        }
-    }
     public function init($name,$dataModelName){
         $this->name = $name;
         $this->dataModelName = $dataModelName;
@@ -145,10 +138,6 @@ class List_model extends CI_Model {
     public function load_data_with_fullSearch($field_name,$where_array,$plus_where = array(),$limit = 5){
         $where_clause = array();
 
-
-        if ($this->whereOrgId!==null && isset($this->dataModel['orgId'])){
-            $where_clause['orgId'] = $this->whereOrgId;
-        }
         if (count($plus_where)!=0){
             foreach ($plus_where as $key => $value) {
                 $where_clause[$key] = $value;
@@ -190,7 +179,6 @@ class List_model extends CI_Model {
                 }
 
                 $this->record_list[$id] = new $this->dataModelName();
-                $this->record_list[$id]->orgId = $this->whereOrgId;
                 $this->record_list[$id]->init_with_data($row['_id'],$row);
             }
             return $num;
@@ -230,7 +218,6 @@ class List_model extends CI_Model {
                 }
 
                 $this->record_list[$id] = new $this->dataModelName();
-                $this->record_list[$id]->orgId = $this->whereOrgId;
                 $this->record_list[$id]->init_with_data($row['_id'],$row);
             }
             return $num;
@@ -318,9 +305,6 @@ class List_model extends CI_Model {
             }
             
         }
-        if ($this->whereOrgId!==null && isset($this->dataModel['orgId'])){
-            $this->db->where(array('orgId'=>$this->whereOrgId));
-        }
 
         if (DB_TYPE=="MYSQL"){
             foreach ($this->orderKey as $key => $value) {
@@ -346,7 +330,6 @@ class List_model extends CI_Model {
                 }
 
                 $this->record_list[$id] = new $this->dataModelName();
-                $this->record_list[$id]->orgId = $this->whereOrgId;
                 $this->record_list[$id]->init_with_data($row['_id'],$row);
             }
             $this->recordCount = $num;
@@ -379,7 +362,6 @@ class List_model extends CI_Model {
             }
 
             $this->record_list[$id] = new $dataModelName();
-            $this->record_list[$id]->orgId = $this->whereOrgId;
             $this->record_list[$id]->init_with_data($row['_id'],$row);
         }
     }

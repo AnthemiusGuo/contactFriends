@@ -6,7 +6,7 @@
         <label class="control-label visible-ie8 visible-ie9">登录手机号</label>
         <div class="input-icon">
             <span class="glyphicon glyphicon-phone"></span>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="登录手机号" id="uPhone" name="uPhone">
+            <input class="form-control placeholder-no-fix" type="text" placeholder="登录手机号" id="uPhone" name="uPhone" required>
         </div>
     </div>
 
@@ -14,14 +14,14 @@
         <label class="control-label visible-ie8 visible-ie9">姓名</label>
         <div class="input-icon">
             <span class="glyphicon glyphicon-user"></span>
-            <input class="form-control placeholder-no-fix" type="text" required="required" placeholder="姓名" id="uName"  name="uName">
+            <input class="form-control placeholder-no-fix" type="text" required="required" placeholder="姓名" id="uName"  name="uName" required>
         </div>
     </div>
     <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">密码</label>
         <div class="input-icon">
             <span class="glyphicon glyphicon-lock"></span>
-            <input class="form-control placeholder-no-fix" type="password" required="required"  id="uPassword" placeholder="密码" name="uPassword">
+            <input class="form-control placeholder-no-fix" type="password" required="required"  id="uPassword" placeholder="密码" name="uPassword" >
         </div>
     </div>
     <div class="form-group">
@@ -29,7 +29,7 @@
         <div class="controls">
             <div class="input-icon">
                 <span class="glyphicon glyphicon-lock"></span>
-                <input class="form-control placeholder-no-fix" type="password" required="required"  placeholder="重输密码" id="uPassword2" name="uPassword2">
+                <input class="form-control placeholder-no-fix" type="password" required="required"  placeholder="重输密码" id="uPassword2" name="uPassword2" >
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
         <label class="control-label visible-ie8 visible-ie9">邀请码</label>
         <div class="input-icon">
             <span class="glyphicon glyphicon-thumbs-up"></span>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="如果您有邀请码，请输入" id="uPhone" name="uPhone">
+            <input class="form-control placeholder-no-fix" type="text" placeholder="如果您有邀请码，请输入" id="uInvite" name="uInvite" required>
         </div>
     </div>
     <div class="form-group">
